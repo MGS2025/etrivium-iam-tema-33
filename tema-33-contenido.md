@@ -1093,6 +1093,8 @@ Sus habilitadores tecnológicos:
 
 ## 9. Seguridad y normativa en la Administración Pública
 
+> **Material complementario.** El enunciado oficial de este tema no nombra este apartado. Se mantiene porque sitúa la materia en el Ayuntamiento y en la normativa que le aplica, pero lo exigible es lo que enumera el título del tema.
+
 Esta sección cierra el tema con las dos preguntas que un técnico municipal tiene que saber contestar sobre cualquier comunicación: **¿es segura?** y **¿es legal?**. La primera se responde con el ENS y con la técnica del enlace radio; la segunda, con la Ley General de Telecomunicaciones.
 
 ### 9.1. Aspectos de seguridad e integridad en redes inalámbricas

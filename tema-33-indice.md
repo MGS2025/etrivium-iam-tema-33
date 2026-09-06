@@ -49,7 +49,7 @@
    8.1. Evolución y arquitectura de redes celulares móviles
    8.2. Tecnologías consolidadas y de alta capacidad
 
-9. **Seguridad y normativa en la Administración Pública**
+9. **Seguridad y normativa en la Administración Pública (material complementario)**
    9.1. Aspectos de seguridad e integridad en redes inalámbricas
    9.2. Marco normativo y regulatorio de telecomunicaciones en el ámbito público
 
