@@ -169,18 +169,18 @@
   <rect x="20" y="176" width="640" height="26" rx="4" fill="#fdf3e3"/>
   <text x="340" y="193" text-anchor="middle" class="d4">LÍMITE DEL COBRE EN ETHERNET: 100 m de enlace = 90 m de cable horizontal + 10 m de latiguillos</text>
   <text x="26" y="226" class="k4">MONOMODO FRENTE A MULTIMODO</text>
-  <rect x="20" y="234" width="315" height="66" rx="4" fill="#0055a0"/>
+  <rect x="20" y="234" width="315" height="70" rx="4" fill="#0055a0"/>
   <text x="177" y="252" text-anchor="middle" class="t4">MULTIMODO — OM1 a OM5</text>
   <text x="177" y="268" text-anchor="middle" class="s4">Núcleo 50 o 62,5 micras · LED o VCSEL</text>
   <text x="177" y="282" text-anchor="middle" class="s4">Dispersión modal · decenas o cientos de metros</text>
   <text x="177" y="295" text-anchor="middle" class="s4">Vertical de edificio y centro de datos</text>
-  <rect x="345" y="234" width="315" height="66" rx="4" fill="#2d8659"/>
+  <rect x="345" y="234" width="315" height="70" rx="4" fill="#2d8659"/>
   <text x="502" y="252" text-anchor="middle" class="t4">MONOMODO — OS1 y OS2</text>
   <text x="502" y="268" text-anchor="middle" class="s4">Núcleo 9 micras aprox. · diodo láser</text>
   <text x="502" y="282" text-anchor="middle" class="s4">Decenas o cientos de kilómetros</text>
   <text x="502" y="295" text-anchor="middle" class="s4">Enlaces entre sedes, acceso FTTH, troncal</text>
-  <rect x="20" y="310" width="640" height="24" rx="4" fill="none" stroke="#0055a0" stroke-width="1.5"/>
-  <text x="340" y="326" text-anchor="middle" class="k4">A MAYOR NÚCLEO, MÁS MODOS, MÁS DISPERSIÓN Y MENOS ALCANCE · ventanas 850, 1310 y 1550 nm</text>
+  <rect x="20" y="312" width="640" height="24" rx="4" fill="none" stroke="#0055a0" stroke-width="1.5"/>
+  <text x="340" y="328" text-anchor="middle" class="k4">A MAYOR NÚCLEO, MÁS MODOS, MÁS DISPERSIÓN Y MENOS ALCANCE · ventanas 850, 1310 y 1550 nm</text>
   <text x="670" y="350" text-anchor="end" class="n4">[Fuente: ISO/IEC 11801; IEEE 802.3]</text>
 </svg>
 ```
@@ -288,23 +288,23 @@
   <rect x="20" y="36" width="206" height="28" rx="5" fill="#0055a0"/><text x="123" y="55" text-anchor="middle" class="t7">SÍMPLEX</text>
   <rect x="237" y="36" width="206" height="28" rx="5" fill="#e89822"/><text x="340" y="55" text-anchor="middle" class="t7">SEMIDÚPLEX (half)</text>
   <rect x="454" y="36" width="206" height="28" rx="5" fill="#2d8659"/><text x="557" y="55" text-anchor="middle" class="t7">DÚPLEX (full)</text>
-  <rect x="20" y="70" width="206" height="72" rx="4" fill="#eef3f8"/>
+  <rect x="20" y="70" width="206" height="76" rx="4" fill="#eef3f8"/>
   <text x="123" y="88" text-anchor="middle" class="d7">Un solo sentido, siempre el mismo</text>
   <path d="M50 104 L196 104" stroke="#0055a0" stroke-width="2" marker-end="url(#a7)"/>
   <text x="123" y="124" text-anchor="middle" class="d7">Radio, TDT, panel informativo</text>
-  <text x="123" y="137" text-anchor="middle" class="n7">no hay canal de vuelta</text>
-  <rect x="237" y="70" width="206" height="72" rx="4" fill="#fdf3e3"/>
+  <text x="123" y="138" text-anchor="middle" class="n7">no hay canal de vuelta</text>
+  <rect x="237" y="70" width="206" height="76" rx="4" fill="#fdf3e3"/>
   <text x="340" y="88" text-anchor="middle" class="d7">Los dos sentidos, ALTERNANDO</text>
   <path d="M267 100 L413 100" stroke="#0055a0" stroke-width="2" marker-end="url(#a7)"/>
   <path d="M413 112 L267 112" stroke="#888" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#a7)"/>
   <text x="340" y="128" text-anchor="middle" class="d7">Walkie-talkie, TETRA, Wi-Fi</text>
-  <text x="340" y="139" text-anchor="middle" class="n7">hace falta arbitrar el turno</text>
-  <rect x="454" y="70" width="206" height="72" rx="4" fill="#e8f4ee"/>
+  <text x="340" y="140" text-anchor="middle" class="n7">hace falta arbitrar el turno</text>
+  <rect x="454" y="70" width="206" height="76" rx="4" fill="#e8f4ee"/>
   <text x="557" y="88" text-anchor="middle" class="d7">Los dos sentidos, A LA VEZ</text>
   <path d="M484 100 L630 100" stroke="#0055a0" stroke-width="2" marker-end="url(#a7)"/>
   <path d="M630 112 L484 112" stroke="#0055a0" stroke-width="2" marker-end="url(#a7)"/>
   <text x="557" y="128" text-anchor="middle" class="d7">Telefonía, Ethernet conmutado</text>
-  <text x="557" y="139" text-anchor="middle" class="n7">dos canales, o FDD, o TDD</text>
+  <text x="557" y="140" text-anchor="middle" class="n7">dos canales, o FDD, o TDD</text>
   <rect x="20" y="156" width="640" height="26" rx="4" fill="#fbeaea"/>
   <text x="340" y="173" text-anchor="middle" class="d7">EL WI-FI ES SEMIDÚPLEX: una antena que transmite no puede escuchar su propia frecuencia</text>
   <rect x="20" y="192" width="640" height="26" rx="4" fill="#eef3f8"/>
@@ -416,10 +416,10 @@
   <rect x="436" y="158" width="224" height="46" rx="5" fill="#e8f4ee"/><text x="548" y="178" text-anchor="middle" class="d10">UNO POR INTERFAZ</text><text x="548" y="194" text-anchor="middle" class="n10">detiene la difusión</text>
   <rect x="20" y="216" width="640" height="26" rx="4" fill="#fdf3e3"/>
   <text x="340" y="233" text-anchor="middle" class="d10">EL CONMUTADOR NO DIVIDE EL DOMINIO DE DIFUSIÓN: solo lo hacen el encaminador y las VLAN</text>
-  <rect x="20" y="252" width="640" height="46" rx="5" fill="none" stroke="#d13c3c" stroke-width="1.5"/>
+  <rect x="20" y="252" width="640" height="56" rx="5" fill="none" stroke="#d13c3c" stroke-width="1.5"/>
   <text x="340" y="270" text-anchor="middle" class="k10">POR QUÉ IMPORTA: la tormenta de difusión</text>
-  <text x="340" y="285" text-anchor="middle" class="n10">La trama Ethernet NO tiene TTL, así que un bucle de nivel 2 la multiplica sin fin. Remedios: STP/RSTP,</text>
-  <text x="340" y="296" text-anchor="middle" class="n10">VLAN para acotar el dominio y control de tormentas por puerto</text>
+  <text x="340" y="286" text-anchor="middle" class="n10">La trama Ethernet NO tiene TTL, así que un bucle de nivel 2 la multiplica sin fin. Remedios: STP/RSTP,</text>
+  <text x="340" y="299" text-anchor="middle" class="n10">VLAN para acotar el dominio y control de tormentas por puerto</text>
   <text x="670" y="324" text-anchor="end" class="n10">[Fuente: IEEE 802.1; TANENBAUM]</text>
 </svg>
 ```
