@@ -16,13 +16,13 @@
 
 Este tema incluye cuatro tipos de **cajas callout** para facilitar el estudio:
 
-> **[DATO CLAVE EXAMEN]** Información de alta densidad memorística, con alta probabilidad de aparecer en el test oficial: cifras, frecuencias, distancias, siglas, normas IEEE y artículos de la Ley General de Telecomunicaciones.
+> **[DATO CLAVE]** Información de alta densidad memorística: cifras, frecuencias, distancias, siglas, normas IEEE y artículos de la Ley General de Telecomunicaciones.
 
 > **[EJERCICIO RESUELTO]** Problema + solución paso a paso: calcular una capacidad de canal, dimensionar un enlace, elegir un medio de transmisión, contar dominios de colisión y de difusión.
 
-> **[EJEMPLO AYTO MADRID]** Aplicación real de la teoría al entorno municipal (red del IAM, sedes de distrito, oficinas de atención a la ciudadanía, red de la Policía Municipal, wifi de uso público).
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Aplicación real de la teoría al entorno municipal (red del IAM, sedes de distrito, oficinas de atención a la ciudadanía, red de la Policía Municipal, wifi de uso público).
 
-> **[REFERENCIA CRUZADA]** Enlace conceptual a otros temas del temario oficial.
+> **[RELACIÓN CON OTROS TEMAS]** Enlace conceptual a otros temas del temario oficial.
 
 **Este es el tema-cimiento del bloque de comunicaciones**, y conviene entender su papel antes de empezar. El temario oficial dedica ocho temas a las redes —del 30 al 38, más el 39 en su vertiente normativa— y **este es el primero de todos ellos por orden lógico**, aunque no lo sea por número. Aquí se establece el vocabulario y la física: qué es una comunicación, por qué medio viaja, en qué modo, con qué equipos, en qué tipo de red y con qué técnica de conmutación. Los temas siguientes construyen sobre ese cimiento: el **Tema 34** añade el modelo de capas y los protocolos TCP/IP, el **Tema 35** el servicio de internet, el **Tema 36** la seguridad de las comunicaciones, el **Tema 37** la red de área local en detalle y el **Tema 38** una tecnología radio concreta, TETRA.
 
@@ -32,7 +32,7 @@ De ahí se derivan las **fronteras** que este tema respeta deliberadamente, y qu
 |---|---|---|
 | Modelo **OSI** y modelo **TCP/IP**, direccionamiento IP, protocolos | **Tema 34** | Usa las capas **solo** como criterio para clasificar los equipos de interconexión (§4.2) |
 | **Internet**, servicios, HTTP, HTTPS, TLS | **Tema 35** | No entra: cita internet como red de redes de conmutación de paquetes |
-| **Seguridad perimetral**, cortafuegos, IDS/IPS, VPN de acceso remoto | **Tema 36** | Solo la seguridad **específicamente inalámbrica** (§9.1), que el esqueleto oficial sitúa aquí |
+| **Seguridad perimetral**, cortafuegos, IDS/IPS, VPN de acceso remoto | **Tema 36** | Solo la seguridad **específicamente inalámbrica** (§9.1) |
 | **Redes locales**: tipología, técnicas de transmisión, **métodos de acceso al medio**, dispositivos | **Tema 37** | Los equipos de interconexión sí (los pide el enunciado), pero **no** CSMA/CD, token ni las tramas Ethernet |
 | **TETRA** | **Tema 38** | Lo cita como ejemplo canónico de semidúplex y de radio troncal profesional |
 | **Administración** de la red local, VLAN, monitorización | **Tema 30** | Da el fundamento (segmentación, difusión), no la operación |
@@ -50,9 +50,9 @@ Las fuentes se citan con etiquetas breves tipo `[LGT]`, `[IEEE802.11]` o `[UIT-T
 
 ### 1.1. Elementos del sistema de transmisión y perturbaciones en el canal
 
-**Qué es una telecomunicación.** El punto de partida no es una definición de manual, sino una **definición legal** que conviene poder reproducir casi literalmente, porque es la que maneja la normativa española y la que se pregunta:
+**Qué es una telecomunicación.** El punto de partida no es una definición de manual, sino una **definición legal** que conviene poder reproducir casi literalmente, porque es la que maneja la normativa española:
 
-> **[DATO CLAVE EXAMEN]** **Telecomunicación** es *«toda transmisión, emisión o recepción de signos, señales, escritos, imágenes, sonidos o informaciones de cualquier naturaleza por hilo, radioelectricidad, medios ópticos u otros sistemas electromagnéticos»* [LGT, anexo II, apartado 79]. Tres rasgos de la definición se preguntan: (1) es **indiferente el contenido** («informaciones de cualquier naturaleza»); (2) es **indiferente el medio** (hilo, radio, óptico u otros sistemas electromagnéticos); y (3) cubre las **tres operaciones** —transmitir, emitir y recibir—, no solo la primera. El prefijo *tele-* añade la idea de **distancia**.
+> **[DATO CLAVE]** **Telecomunicación** es *«toda transmisión, emisión o recepción de signos, señales, escritos, imágenes, sonidos o informaciones de cualquier naturaleza por hilo, radioelectricidad, medios ópticos u otros sistemas electromagnéticos»* [LGT, anexo II, apartado 79]. Tres rasgos clave de la definición: (1) es **indiferente el contenido** («informaciones de cualquier naturaleza»); (2) es **indiferente el medio** (hilo, radio, óptico u otros sistemas electromagnéticos); y (3) cubre las **tres operaciones** —transmitir, emitir y recibir—, no solo la primera. El prefijo *tele-* añade la idea de **distancia**.
 
 Conviene deslindar tres palabras que el temario usa con precisión distinta:
 
@@ -70,7 +70,7 @@ Conviene deslindar tres palabras que el temario usa con precisión distinta:
 | **Receptor** (decodificador) | Operación inversa a la del transmisor: demodula y reconstruye el mensaje | La tarjeta de red del servidor en el CPD del IAM |
 | **Destino** | Entidad a la que va dirigido el mensaje | La aplicación de tramitación de expedientes |
 
-> **[DATO CLAVE EXAMEN]** En el modelo de Shannon la **fuente de ruido actúa sobre el CANAL**, no sobre el mensaje ni sobre el transmisor. Es un detalle de dibujo que se pregunta: el ruido se suma a la señal **durante su tránsito**. De ahí que todas las técnicas de protección —codificación de canal, detección y corrección de errores, cifrado, regeneración— se apliquen **antes** de entrar al canal y **después** de salir de él, nunca dentro.
+> **[DATO CLAVE]** En el modelo de Shannon la **fuente de ruido actúa sobre el CANAL**, no sobre el mensaje ni sobre el transmisor. Es un detalle de dibujo importante: el ruido se suma a la señal **durante su tránsito**. De ahí que todas las técnicas de protección —codificación de canal, detección y corrección de errores, cifrado, regeneración— se apliquen **antes** de entrar al canal y **después** de salir de él, nunca dentro.
 
 A esos cinco elementos, muchos manuales añaden el **protocolo** —el conjunto de reglas que hacen inteligible el intercambio— y el **mensaje** propiamente dicho, con lo que la enumeración pasa a ser de siete [FOROUZAN]. Las dos formulaciones son correctas: la de cinco es la del modelo físico de Shannon; la de siete es la del modelo de comunicación de datos. Si una pregunta enumera «emisor, receptor, mensaje, medio y protocolo», está usando la segunda.
 
@@ -85,7 +85,7 @@ Esa doble posibilidad genera cuatro combinaciones que conviene tener claras, por
 | **Digital** | Analógica | **Módem** (modulador-demodulador) | ADSL, cable módem, radioenlace |
 | Digital | Digital | Codificador de línea (NRZ, Manchester, 4B/5B…) | Ethernet sobre par trenzado |
 
-> **[DATO CLAVE EXAMEN]** **Módem y códec no son sinónimos y hacen operaciones inversas.** El **módem** parte de datos **digitales** y los adapta a un medio **analógico** (modula) y viceversa (demodula). El **códec** parte de una señal **analógica** de la fuente y la convierte en **digital** (codifica) y viceversa (decodifica). Regla mnemotécnica: el módem mira **al medio**; el códec mira **a la fuente**.
+> **[DATO CLAVE]** **Módem y códec no son sinónimos y hacen operaciones inversas.** El **módem** parte de datos **digitales** y los adapta a un medio **analógico** (modula) y viceversa (demodula). El **códec** parte de una señal **analógica** de la fuente y la convierte en **digital** (codifica) y viceversa (decodifica). Regla mnemotécnica: el módem mira **al medio**; el códec mira **a la fuente**.
 
 **La digitalización de una señal analógica** sigue tres pasos, en este orden y sin excepción [STALLINGS]:
 
@@ -95,7 +95,7 @@ Esa doble posibilidad genera cuatro combinaciones que conviene tener claras, por
 
 El resultado clásico de esa cadena es la **modulación por impulsos codificados (MIC o PCM)** de la telefonía, cuyo cálculo es el ejercicio numérico más repetido del tema y se resuelve en §1.2.
 
-**Perturbaciones del canal.** Ninguna señal llega igual que salió. Las alteraciones se agrupan en cinco familias, y distinguirlas es una pregunta habitual. Ver **diagrama D2**.
+**Perturbaciones del canal.** Ninguna señal llega igual que salió. Las alteraciones se agrupan en cinco familias, y conviene distinguirlas. Ver **diagrama D2**.
 
 **1. Atenuación.** Pérdida de **potencia** de la señal conforme avanza por el medio. Crece con la **distancia** y, en general, con la **frecuencia** —lo que la hace además **selectiva**, porque no afecta por igual a todos los componentes de la señal—. Se mide en **decibelios**, y en los medios guiados se expresa como atenuación **por unidad de longitud** (dB/km en fibra, dB/100 m en cobre). Se combate con **amplificadores** (en señal analógica, que amplifican también el ruido) o con **repetidores regeneradores** (en señal digital, que reconstruyen la señal limpia). Es la razón última de que exista un **límite de longitud** en cada medio.
 
@@ -108,28 +108,28 @@ El resultado clásico de esa cadena es la **modulación por impulsos codificados
 - **Diafonía (*crosstalk*)**: acoplamiento no deseado entre pares o circuitos **próximos**. Es el enemigo característico del **par trenzado**, y la razón física de que los pares se trencen. Se mide con parámetros como **NEXT** (diafonía en el extremo próximo) y **FEXT** (en el extremo lejano).
 - **Ruido impulsivo**: picos irregulares de gran amplitud y corta duración (una tormenta, el arranque de un motor, un relé). Es **el más dañino en transmisión digital**, porque en unos milisegundos destruye un bloque entero de bits, mientras que en una conversación analógica solo produce un chasquido.
 
-> **[DATO CLAVE EXAMEN]** Doble asimetría que se pregunta: el **ruido térmico** es inevitable pero previsible; el **ruido impulsivo** es esporádico pero devastador **en digital**. Y al revés: la señal analógica tolera mal el ruido acumulado (los amplificadores lo amplifican con la señal), mientras que la digital lo tolera bien hasta un umbral **y luego falla de golpe**. Esta es la ventaja decisiva de lo digital: la **regeneración** de la señal en cada repetidor deja el ruido a cero.
+> **[DATO CLAVE]** Doble asimetría clave: el **ruido térmico** es inevitable pero previsible; el **ruido impulsivo** es esporádico pero devastador **en digital**. Y al revés: la señal analógica tolera mal el ruido acumulado (los amplificadores lo amplifican con la señal), mientras que la digital lo tolera bien hasta un umbral **y luego falla de golpe**. Esta es la ventaja decisiva de lo digital: la **regeneración** de la señal en cada repetidor deja el ruido a cero.
 
 **4. Interferencia.** Energía procedente de **otra fuente de comunicación** —otro emisor, otro sistema— que se superpone a la señal útil. Es especialmente crítica en los medios **no guiados**, donde el medio es compartido por todos, y es la razón de la regulación administrativa del espectro (§9.2). La **interferencia electromagnética (EMI)** de origen industrial afecta a los medios de cobre, pero **no a la fibra óptica**, que por ser dieléctrica es inmune.
 
 **5. Eco y otras alteraciones.** El **eco** es el retorno de parte de la señal por reflexión, típico de las desadaptaciones de impedancia; se combate con **canceladores de eco**. Hay que añadir la **fluctuación de fase (*jitter*)**, las **variaciones de amplitud** y los **desvanecimientos (*fading*)** propios de la radio, causados por la propagación multitrayecto.
 
-> **[EJEMPLO AYTO MADRID]** Las tres perturbaciones aparecen juntas en un caso real de la oficina de distrito. Un latiguillo de par trenzado que discurre junto a la canalización eléctrica del cuarto de comunicaciones sufre **interferencia** electromagnética; si además se ha usado cable sin apantallar y se han destrenzado cinco centímetros al conectorizar, aparece **diafonía**; y si alguien ha hecho una tirada de 130 metros hasta un puesto alejado, la **atenuación** deja el enlace por debajo del margen exigido. El síntoma que ve el usuario es siempre el mismo —«la red va lenta»—, pero las tres causas son distintas y se diagnostican con un **certificador de cableado**, no con un ping.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Las tres perturbaciones aparecen juntas en un caso real de la oficina de distrito. Un latiguillo de par trenzado que discurre junto a la canalización eléctrica del cuarto de comunicaciones sufre **interferencia** electromagnética; si además se ha usado cable sin apantallar y se han destrenzado cinco centímetros al conectorizar, aparece **diafonía**; y si alguien ha hecho una tirada de 130 metros hasta un puesto alejado, la **atenuación** deja el enlace por debajo del margen exigido. El síntoma que ve el usuario es siempre el mismo —«la red va lenta»—, pero las tres causas son distintas y se diagnostican con un **certificador de cableado**, no con un ping.
 
 ### 1.2. Transmisión analógica y digital: ancho de banda y velocidad de transmisión
 
-**Ancho de banda.** Es el **rango de frecuencias** que un canal deja pasar sin atenuación apreciable, y se mide en **hercios (Hz)**. Se calcula como la diferencia entre la frecuencia máxima y la mínima del canal. El canal telefónico clásico, por ejemplo, tiene un ancho de banda de unos **3.100 Hz** (de 300 a 3.400 Hz). En el lenguaje corriente «ancho de banda» se usa como sinónimo de velocidad —«tengo 600 megas de ancho de banda»—, y en el examen eso es un distractor clásico:
+**Ancho de banda.** Es el **rango de frecuencias** que un canal deja pasar sin atenuación apreciable, y se mide en **hercios (Hz)**. Se calcula como la diferencia entre la frecuencia máxima y la mínima del canal. El canal telefónico clásico, por ejemplo, tiene un ancho de banda de unos **3.100 Hz** (de 300 a 3.400 Hz). En el lenguaje corriente «ancho de banda» se usa como sinónimo de velocidad —«tengo 600 megas de ancho de banda»—, y conviene no confundirlos:
 
-> **[DATO CLAVE EXAMEN]** **Ancho de banda ≠ velocidad de transmisión.** El **ancho de banda** es un rango de **frecuencias** y se mide en **hercios (Hz)**. La **velocidad de transmisión** o **régimen binario** es un flujo de **bits** y se mide en **bits por segundo (bps)**. Están relacionados —a más ancho de banda, más capacidad posible— pero no son la misma magnitud, y la relación entre ambos depende de la **modulación** y del **ruido**.
+> **[DATO CLAVE]** **Ancho de banda ≠ velocidad de transmisión.** El **ancho de banda** es un rango de **frecuencias** y se mide en **hercios (Hz)**. La **velocidad de transmisión** o **régimen binario** es un flujo de **bits** y se mide en **bits por segundo (bps)**. Están relacionados —a más ancho de banda, más capacidad posible— pero no son la misma magnitud, y la relación entre ambos depende de la **modulación** y del **ruido**.
 
-Hay una **tercera** magnitud que completa el trío y que también se pregunta:
+Hay una **tercera** magnitud que completa el trío:
 
 - **Velocidad de transmisión** o **tasa binaria**: bits por segundo (**bps**, kbps, Mbps, Gbps).
 - **Velocidad de modulación** o **tasa de símbolos**: símbolos (cambios de estado de la señal) por segundo, medida en **baudios (Bd)**.
 
 La relación es `Vt = Vm · log₂(M)`, donde **M** es el número de estados o símbolos distintos que puede tomar la señal.
 
-> **[DATO CLAVE EXAMEN]** **Baudio no es bit por segundo.** Coinciden **solo** cuando cada símbolo transporta **un** bit (M = 2). Si la modulación es de **4 estados** (por ejemplo, QPSK), cada símbolo lleva **2 bits** y la velocidad en bps es **el doble** que en baudios. Con **16-QAM**, cuatro veces; con **4096-QAM** —la de Wi-Fi 7—, **doce veces**, porque `log₂(4096) = 12`.
+> **[DATO CLAVE]** **Baudio no es bit por segundo.** Coinciden **solo** cuando cada símbolo transporta **un** bit (M = 2). Si la modulación es de **4 estados** (por ejemplo, QPSK), cada símbolo lleva **2 bits** y la velocidad en bps es **el doble** que en baudios. Con **16-QAM**, cuatro veces; con **4096-QAM** —la de Wi-Fi 7—, **doce veces**, porque `log₂(4096) = 12`.
 
 **Los dos teoremas de capacidad.** Fijan cuánta información cabe por un canal, y son los dos únicos cálculos que hay que saber hacer de memoria. Ver **diagrama D3**.
 
@@ -149,7 +149,7 @@ C = B · log₂(1 + S/N)
 
 donde `S/N` es la **relación señal-ruido en veces** (no en decibelios). Este resultado es el **límite absoluto**: ninguna modulación, ninguna codificación y ninguna técnica futura permite superar la capacidad de Shannon en un canal dado. Lo que hacen las tecnologías modernas es **acercarse** a él (con códigos correctores como LDPC o turbo códigos).
 
-> **[DATO CLAVE EXAMEN]** Conversión entre relación señal-ruido en decibelios y en veces: `S/N (dB) = 10 · log₁₀(S/N)`. Y al revés, `S/N = 10^(dB/10)`. **30 dB = 1.000 veces**, **20 dB = 100 veces**, **10 dB = 10 veces**, **3 dB ≈ 2 veces**. El error más frecuente en el examen es meter los decibelios directamente en la fórmula de Shannon.
+> **[DATO CLAVE]** Conversión entre relación señal-ruido en decibelios y en veces: `S/N (dB) = 10 · log₁₀(S/N)`. Y al revés, `S/N = 10^(dB/10)`. **30 dB = 1.000 veces**, **20 dB = 100 veces**, **10 dB = 10 veces**, **3 dB ≈ 2 veces**. El error más frecuente es meter los decibelios directamente en la fórmula de Shannon.
 
 > **[EJERCICIO RESUELTO]** **Capacidad de un canal telefónico.**
 > Se dispone de un canal con **B = 3.100 Hz** y una relación señal-ruido de **30 dB**.
@@ -180,7 +180,7 @@ Si no se cumple, aparece el **solapamiento espectral (*aliasing*)** y la señal 
 > 2. **Cuantificación y codificación**: cada muestra se codifica con **8 bits** (256 niveles, con ley A en Europa y ley µ en América).
 > 3. **Régimen binario**: `8.000 muestras/s × 8 bits/muestra = **64.000 bps = 64 kbps**`.
 >
-> Ese canal de 64 kbps es el **E0**, el ladrillo elemental de toda la jerarquía digital europea. Agrupando **32 intervalos de tiempo** de 64 kbps se obtiene el **E1 = 2,048 Mbit/s** [UIT-T, G.704], de los cuales 30 transportan voz y **dos son de señalización y sincronismo**. Es el dato numérico más preguntado de todo el bloque de telefonía, y el origen del clásico «un primario de treinta canales».
+> Ese canal de 64 kbps es el **E0**, el ladrillo elemental de toda la jerarquía digital europea. Agrupando **32 intervalos de tiempo** de 64 kbps se obtiene el **E1 = 2,048 Mbit/s** [UIT-T, G.704], de los cuales 30 transportan voz y **dos son de señalización y sincronismo**. Es el dato numérico clave de todo el bloque de telefonía, y el origen del clásico «un primario de treinta canales».
 
 **Multiplexación.** Compartir un mismo medio físico entre varias comunicaciones simultáneas. Cuatro técnicas, con sus siglas:
 
@@ -196,7 +196,7 @@ Dentro de TDM hay que distinguir dos variantes, y la distinción es exactamente 
 - **TDM síncrona**: a cada canal se le asigna **siempre** su intervalo, lo use o no. Sencilla y de retardo constante, pero **desaprovecha** el medio cuando un canal calla.
 - **TDM estadística** o **asíncrona**: los intervalos se asignan **bajo demanda**, solo a quien tiene algo que enviar. Aprovecha mucho mejor el medio, pero obliga a identificar a qué canal pertenece cada fragmento y introduce **fluctuación**.
 
-> **[REFERENCIA CRUZADA]** La **codificación de la información** (representación binaria, sistemas de numeración, códigos) corresponde al **Tema 11**, y los **formatos de información y ficheros** al **Tema 13**. Este tema da por sabido qué es un bit y se ocupa de **cómo viaja**.
+> **[RELACIÓN CON OTROS TEMAS]** La **codificación de la información** (representación binaria, sistemas de numeración, códigos) corresponde al **Tema 11**, y los **formatos de información y ficheros** al **Tema 13**. Este tema da por sabido qué es un bit y se ocupa de **cómo viaja**.
 
 ---
 
@@ -207,7 +207,7 @@ El **medio de transmisión** es el soporte físico por el que viaja la señal: e
 - **Medios guiados** (o **confinados**, o **de cable**): la señal se propaga **confinada** por un soporte físico que la conduce y la dirige. El camino lo marca el propio medio.
 - **Medios no guiados** (o **inalámbricos**, o **radiados**): la señal se propaga **libremente** por el espacio en forma de onda electromagnética. No hay soporte físico, sino **antenas** que emiten y recogen.
 
-> **[DATO CLAVE EXAMEN]** El criterio de la clasificación es la **existencia de guía artificial**, no la naturaleza de la señal ni la distancia. Un enlace por microondas punto a punto de 40 km es **no guiado** aunque sea direccional y fijo; un cable submarino de 6.000 km es **guiado**. La propia Ley 11/2022 usa ese criterio en la definición de **espectro radioeléctrico**: ondas *«que se propagan por el espacio sin guía artificial»* [LGT, anexo II.21].
+> **[DATO CLAVE]** El criterio de la clasificación es la **existencia de guía artificial**, no la naturaleza de la señal ni la distancia. Un enlace por microondas punto a punto de 40 km es **no guiado** aunque sea direccional y fijo; un cable submarino de 6.000 km es **guiado**. La propia Ley 11/2022 usa ese criterio en la definición de **espectro radioeléctrico**: ondas *«que se propagan por el espacio sin guía artificial»* [LGT, anexo II.21].
 
 ### 2.1. Medios de transmisión guiados
 
@@ -240,9 +240,9 @@ Y según sus prestaciones se agrupan en **categorías** [ISO11801]:
 | **Cat 7 / 7A** | 600 / 1.000 MHz | 10 Gbit/s con conectores GG45 o TERA | 100 m |
 | **Cat 8** | **2.000 MHz** | 25 y 40 Gbit/s en centro de datos | **30 m** |
 
-> **[DATO CLAVE EXAMEN]** El límite de **100 metros** del enlace permanente de cobre en Ethernet es el dato numérico más preguntado del cableado, y su desglose normalizado es: **90 m** de cable horizontal fijo (del armario a la roseta) **+ 10 m** repartidos entre latiguillos de ambos extremos [ISO11801] [IEEE802.3]. Superarlo no produce un fallo limpio, sino **errores intermitentes**, que es lo que lo hace tan difícil de diagnosticar. La **Cat 8**, en cambio, solo garantiza **30 m**: al subir la frecuencia, baja el alcance.
+> **[DATO CLAVE]** El límite de **100 metros** del enlace permanente de cobre en Ethernet es el dato numérico clave del cableado, y su desglose normalizado es: **90 m** de cable horizontal fijo (del armario a la roseta) **+ 10 m** repartidos entre latiguillos de ambos extremos [ISO11801] [IEEE802.3]. Superarlo no produce un fallo limpio, sino **errores intermitentes**, que es lo que lo hace tan difícil de diagnosticar. La **Cat 8**, en cambio, solo garantiza **30 m**: al subir la frecuencia, baja el alcance.
 
-Una capacidad asociada al par trenzado que se pregunta cada vez más es la **alimentación por Ethernet (PoE)**, que lleva por el mismo cable datos y corriente continua [IEEE802.3]:
+Una capacidad asociada al par trenzado cada vez más relevante es la **alimentación por Ethernet (PoE)**, que lleva por el mismo cable datos y corriente continua [IEEE802.3]:
 
 | Norma | Nombre comercial | Potencia en el equipo fuente | Pares usados |
 |---|---|---|---|
@@ -254,7 +254,7 @@ Una capacidad asociada al par trenzado que se pregunta cada vez más es la **ali
 
 Un conductor central de cobre, un dieléctrico aislante, una **malla conductora** que lo rodea concéntricamente y una cubierta exterior. La malla cumple dos funciones: es el segundo conductor del circuito **y** es una **pantalla** contra interferencias, lo que le da mucha mejor inmunidad y mayor ancho de banda que el par trenzado sin apantallar.
 
-Dos impedancias características normalizadas, y confundirlas es un error de examen:
+Dos impedancias características normalizadas, y conviene no confundirlas:
 
 - **50 ohmios**: transmisión **digital** en banda base. Fue el cable de la Ethernet original (**10BASE5**, «cable amarillo» o *thick*, hasta 500 m por segmento; y **10BASE2**, «cheapernet» o *thin*, hasta 185 m con conectores BNC en T).
 - **75 ohmios**: transmisión **analógica** en banda ancha. Es el de la **televisión** por cable y por antena y el del acceso a internet por cable (**DOCSIS**), y sigue muy vivo por eso.
@@ -274,7 +274,7 @@ Sus ventajas son categóricas y hay que poder enumerarlas:
 - **Ligereza y tamaño** muy inferiores a los del cobre de capacidad equivalente.
 - **Aislamiento galvánico**: no transmite diferencias de potencial ni rayos entre edificios.
 
-Y sus inconvenientes, que también se preguntan: **coste** de los equipos terminales, **fragilidad** al doblado con radios pequeños, **dificultad de empalme** (fusionadora, personal cualificado, precisión micrométrica) y **no transporta energía**, de modo que un equipo remoto conectado por fibra necesita alimentación propia (no hay «PoE óptico»).
+Y sus inconvenientes: **coste** de los equipos terminales, **fragilidad** al doblado con radios pequeños, **dificultad de empalme** (fusionadora, personal cualificado, precisión micrométrica) y **no transporta energía**, de modo que un equipo remoto conectado por fibra necesita alimentación propia (no hay «PoE óptico»).
 
 Los dos grandes tipos, con su tabla de designaciones:
 
@@ -289,11 +289,11 @@ Los dos grandes tipos, con su tabla de designaciones:
 | **Coste** | Menor en electrónica, mayor en fibra | Mayor en electrónica, menor en fibra |
 | **Uso típico** | Vertical de edificio, centro de datos | Enlaces entre sedes, acceso FTTH, troncales |
 
-> **[DATO CLAVE EXAMEN]** La regla que resume la diferencia: **a mayor diámetro de núcleo, más modos de propagación, más dispersión modal y menos alcance**. Por eso la fibra de largo alcance es la de núcleo **más fino**, que es justo lo contrario de lo que sugiere la intuición. Las **tres ventanas** de trabajo son **850 nm** (primera, multimodo), **1.310 nm** (segunda) y **1.550 nm** (tercera, la de mínima atenuación y la usada en larga distancia y DWDM) [OM-OS].
+> **[DATO CLAVE]** La regla que resume la diferencia: **a mayor diámetro de núcleo, más modos de propagación, más dispersión modal y menos alcance**. Por eso la fibra de largo alcance es la de núcleo **más fino**, que es justo lo contrario de lo que sugiere la intuición. Las **tres ventanas** de trabajo son **850 nm** (primera, multimodo), **1.310 nm** (segunda) y **1.550 nm** (tercera, la de mínima atenuación y la usada en larga distancia y DWDM) [OM-OS].
 
 Sobre fibra se construyen hoy las redes de acceso **FTTH** (*Fiber To The Home*) mediante arquitecturas **PON** (*Passive Optical Network*), que reparten una misma fibra entre varios abonados con **divisores ópticos pasivos**, sin electrónica intermedia: **GPON** (2,5 Gbit/s descendente / 1,25 ascendente, [UIT-T, G.984]) y **XGS-PON** (10 Gbit/s simétricos, [UIT-T, G.9807.1]).
 
-> **[EJEMPLO AYTO MADRID]** El cableado de la Oficina de Atención a la Ciudadanía combina los tres criterios anteriores de forma típica. **Horizontal** (del armario de planta a cada roseta de puesto): **par trenzado Cat 6A**, porque hay que dar 1 Gbit/s hoy con margen para 10 Gbit/s mañana, alimentar por **PoE+** los teléfonos IP, los puntos de acceso wifi y las cámaras, y ninguna tirada supera los 90 m. **Vertical** (entre plantas): **fibra multimodo OM4**, por distancia y por aislamiento galvánico entre cuadros eléctricos distintos. **Acometida** al centro de proceso de datos del IAM: **fibra monomodo OS2**, porque son kilómetros. Y **coaxial de 75 Ω** solo en el residuo de la instalación de televisión de la sala de espera.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** El cableado de la Oficina de Atención a la Ciudadanía combina los tres criterios anteriores de forma típica. **Horizontal** (del armario de planta a cada roseta de puesto): **par trenzado Cat 6A**, porque hay que dar 1 Gbit/s hoy con margen para 10 Gbit/s mañana, alimentar por **PoE+** los teléfonos IP, los puntos de acceso wifi y las cámaras, y ninguna tirada supera los 90 m. **Vertical** (entre plantas): **fibra multimodo OM4**, por distancia y por aislamiento galvánico entre cuadros eléctricos distintos. **Acometida** al centro de proceso de datos del IAM: **fibra monomodo OS2**, porque son kilómetros. Y **coaxial de 75 Ω** solo en el residuo de la instalación de televisión de la sala de espera.
 
 ### 2.2. Medios de transmisión no guiados
 
@@ -301,7 +301,7 @@ Sobre fibra se construyen hoy las redes de acceso **FTTH** (*Fiber To The Home*)
 
 **El espectro radioeléctrico.** La definición hay que saberla en su versión legal, porque delimita el objeto de toda la regulación de §9.2:
 
-> **[DATO CLAVE EXAMEN]** **Espectro radioeléctrico**: *«ondas electromagnéticas, cuya frecuencia se fija convencionalmente por debajo de 3.000 GHz, que se propagan por el espacio sin guía artificial»* [LGT, anexo II.21]. Dos datos de la definición se preguntan: el límite superior **convencional** de **3.000 GHz (3 THz)** y la exigencia de **ausencia de guía artificial**. Y su consecuencia jurídica, en el art. 85.1: el espectro es un **bien de dominio público**, cuya **titularidad y administración corresponden al Estado**.
+> **[DATO CLAVE]** **Espectro radioeléctrico**: *«ondas electromagnéticas, cuya frecuencia se fija convencionalmente por debajo de 3.000 GHz, que se propagan por el espacio sin guía artificial»* [LGT, anexo II.21]. Dos datos clave de la definición: el límite superior **convencional** de **3.000 GHz (3 THz)** y la exigencia de **ausencia de guía artificial**. Y su consecuencia jurídica, en el art. 85.1: el espectro es un **bien de dominio público**, cuya **titularidad y administración corresponden al Estado**.
 
 Una onda electromagnética se caracteriza por su **frecuencia** (f, en hercios) y su **longitud de onda** (λ, en metros), ligadas por la velocidad de propagación:
 
@@ -330,9 +330,9 @@ De donde se deduce la regla física que gobierna todo el diseño radio: **frecue
 2. **Onda ionosférica o espacial**: la onda se **refleja** en las capas ionizadas de la atmósfera y vuelve a la Tierra, pudiendo dar varios «saltos». Domina en **HF** (3-30 MHz) y es la que permite la radioafición intercontinental. Depende de la hora, la estación y la actividad solar, lo que la hace **poco fiable** para servicios comerciales.
 3. **Onda directa o de visión directa (*line of sight*)**: la onda viaja en línea recta del emisor al receptor. Domina por encima de **30 MHz**, es decir, en VHF, UHF, SHF y EHF, que son las bandas de **todos** los servicios modernos. Su alcance está limitado por el **horizonte radioeléctrico**, ligeramente superior al óptico por la refracción atmosférica.
 
-> **[DATO CLAVE EXAMEN]** La **regla de oro de la radio**, que explica prácticamente todas las decisiones de diseño y de espectro del tema: **a mayor frecuencia**, (a) más **ancho de banda** disponible y por tanto más **capacidad**; (b) antenas y equipos **más pequeños**; pero (c) **menor alcance**, (d) **peor penetración** en paredes y obstáculos, y (e) mayor sensibilidad a la **lluvia** y a los obstáculos móviles. Es exactamente la razón de que el **5G de 700 MHz** se use para **cobertura** rural y en interiores, y el **5G de 26 GHz** para **capacidad** en puntos calientes urbanos (§8.2).
+> **[DATO CLAVE]** La **regla de oro de la radio**, que explica prácticamente todas las decisiones de diseño y de espectro del tema: **a mayor frecuencia**, (a) más **ancho de banda** disponible y por tanto más **capacidad**; (b) antenas y equipos **más pequeños**; pero (c) **menor alcance**, (d) **peor penetración** en paredes y obstáculos, y (e) mayor sensibilidad a la **lluvia** y a los obstáculos móviles. Es exactamente la razón de que el **5G de 700 MHz** se use para **cobertura** rural y en interiores, y el **5G de 26 GHz** para **capacidad** en puntos calientes urbanos (§8.2).
 
-**Radiofrecuencia, microondas e infrarrojos.** El esqueleto oficial pide distinguir estas tres modalidades, que en rigor son tres tramos del mismo espectro electromagnético:
+**Radiofrecuencia, microondas e infrarrojos.** Se distinguen tres modalidades, que en rigor son tres tramos del mismo espectro electromagnético:
 
 **Radiofrecuencia en sentido estricto (radiodifusión y radio móvil).** Bandas de MF a UHF. Su rasgo distintivo es que la transmisión suele ser **omnidireccional**: la antena radia en todas las direcciones del plano, y cualquier receptor dentro de la cobertura recibe la señal. Eso la hace idónea para **difusión** (§6.2) y para **movilidad**, y es la banda de la radio, la TDT, la telefonía móvil, el Wi-Fi de 2,4 GHz y TETRA.
 
@@ -343,11 +343,11 @@ De donde se deduce la regla física que gobierna todo el diseño radio: **frecue
 
 **Infrarrojos.** Por encima de las microondas y justo por debajo de la luz visible. Son **de muy corto alcance** y, sobre todo, **no atraviesan paredes**, lo que tiene dos consecuencias opuestas: es una limitación severa (obliga a la visión directa dentro de una habitación) y una **ventaja de seguridad y de reutilización** (la señal no sale del recinto, así que la misma frecuencia puede usarse en la habitación de al lado sin interferencia). Su uso clásico es el mando a distancia y el enlace **IrDA** entre dispositivos; en redes de datos ha sido desplazado por completo por el Wi-Fi, aunque reaparece en la investigación sobre **comunicación por luz visible (Li-Fi)**.
 
-> **[DATO CLAVE EXAMEN]** El **infrarrojo no requiere autorización administrativa** de uso del espectro **porque no es espectro radioeléctrico**: queda por encima del límite convencional de 3.000 GHz de la definición legal. Las bandas **ISM** (*Industrial, Scientific and Medical*) de **2,4 GHz** y **5 GHz** sí son espectro radioeléctrico, pero son de **uso común** —no exigen concesión individual, solo cumplir los límites de potencia—, y esa es la razón económica y jurídica de la explosión del Wi-Fi.
+> **[DATO CLAVE]** El **infrarrojo no requiere autorización administrativa** de uso del espectro **porque no es espectro radioeléctrico**: queda por encima del límite convencional de 3.000 GHz de la definición legal. Las bandas **ISM** (*Industrial, Scientific and Medical*) de **2,4 GHz** y **5 GHz** sí son espectro radioeléctrico, pero son de **uso común** —no exigen concesión individual, solo cumplir los límites de potencia—, y esa es la razón económica y jurídica de la explosión del Wi-Fi.
 
 ### 2.3. Parámetros de caracterización y calidad en medios de transmisión
 
-Un medio de transmisión —y por extensión un enlace o un servicio— se caracteriza y se contrata por un conjunto de parámetros medibles. Saber **qué mide cada uno y en qué unidad** es materia de examen y, sobre todo, es lo que permite redactar o interpretar un acuerdo de nivel de servicio. Ver **diagrama D6**.
+Un medio de transmisión —y por extensión un enlace o un servicio— se caracteriza y se contrata por un conjunto de parámetros medibles. Saber **qué mide cada uno y en qué unidad** es lo que permite redactar o interpretar un acuerdo de nivel de servicio. Ver **diagrama D6**.
 
 | Parámetro | Qué mide | Unidad | Qué lo degrada |
 |---|---|---|---|
@@ -366,7 +366,7 @@ Tres precisiones que separan al que ha entendido del que ha memorizado:
 
 **1. Latencia y fluctuación no son lo mismo, y no molestan a lo mismo.** La **latencia** es el retardo; la **fluctuación** es lo irregular que es ese retardo. Una transferencia de ficheros tolera muy bien una latencia alta (tarda más, y ya está) pero le da igual la fluctuación. Una **llamada de voz o una videoconferencia** es justo al revés: sufre con la fluctuación —que produce cortes y voz metálica— y necesita latencia baja para que la conversación sea natural. Los memorias intermedias antifluctuación (*jitter buffers*) del teléfono IP convierten fluctuación en latencia, que es el mal menor.
 
-**2. El decibelio es logarítmico, y por eso engaña.** `dB = 10 · log₁₀(P₁/P₂)` para potencias. Consecuencias que se preguntan: **3 dB ≈ el doble** de potencia, **10 dB = diez veces**, **20 dB = cien veces**, **30 dB = mil veces**. Un enlace que pierde 30 dB no ha perdido «un poco más» que uno que pierde 10: ha perdido **cien veces más**. Y las atenuaciones en decibelios de tramos sucesivos **se suman**, en lugar de multiplicarse, que es precisamente la comodidad por la que se usa esta escala.
+**2. El decibelio es logarítmico, y por eso engaña.** `dB = 10 · log₁₀(P₁/P₂)` para potencias. Consecuencias clave: **3 dB ≈ el doble** de potencia, **10 dB = diez veces**, **20 dB = cien veces**, **30 dB = mil veces**. Un enlace que pierde 30 dB no ha perdido «un poco más» que uno que pierde 10: ha perdido **cien veces más**. Y las atenuaciones en decibelios de tramos sucesivos **se suman**, en lugar de multiplicarse, que es precisamente la comodidad por la que se usa esta escala.
 
 **3. Caudal no es velocidad nominal.** Entre el régimen binario del medio y los bits útiles que percibe la aplicación hay una diferencia estructural: las **cabeceras** de todos los protocolos implicados, las retransmisiones, el control de flujo y la contienda por el medio. En Wi-Fi la diferencia es especialmente grande —el caudal real ronda **la mitad** o menos de la velocidad nominal anunciada—, porque el medio es compartido y semidúplex, cada trama exige confirmación y el mecanismo de evitación de colisiones consume tiempo. Anunciar «Wi-Fi 6 de 1.200 Mbps» y medir 500 Mbps no es una avería: es el funcionamiento normal.
 
@@ -381,13 +381,13 @@ Tres precisiones que separan al que ha entendido del que ha memorizado:
 > **(b)** **Fibra monomodo OS2**. A 6 km el cobre está descartado por atenuación —tres órdenes de magnitud fuera del límite de 100 m—, y la fibra multimodo también, porque su dispersión modal la deja en el orden de cientos de metros. Si el trazado no es propio, la solución práctica es contratar un **circuito de operador** sobre esa misma fibra.
 > **(c)** **Radioenlace de microondas punto a punto** con visión directa, o Wi-Fi exterior direccional en banda de uso común. Es la respuesta correcta precisamente **porque no hay canalización**: abrir zanja para 800 m tiene un coste y un plazo incomparablemente mayores, y requiere licencia de obra. Hay que dejar constancia de los dos condicionantes del medio no guiado: exige **visión directa** despejada y, al ser un medio compartido, obliga a **cifrar el enlace** —lo que en un sistema sujeto al ENS es además exigible por `mp.com.2` y `mp.com.3` (§9.1)—.
 
-> **[REFERENCIA CRUZADA]** Los **conectores y las interfaces del puesto de usuario** (USB, HDMI, DisplayPort, Thunderbolt) corresponden al **Tema 12**. El **cableado estructurado de una red local concreta**, con sus subsistemas y su certificación, se desarrolla en el **Tema 37**.
+> **[RELACIÓN CON OTROS TEMAS]** Los **conectores y las interfaces del puesto de usuario** (USB, HDMI, DisplayPort, Thunderbolt) corresponden al **Tema 12**. El **cableado estructurado de una red local concreta**, con sus subsistemas y su certificación, se desarrolla en el **Tema 37**.
 
 ---
 
 ## 3. Modos de comunicación
 
-«Modo de comunicación» designa la **forma en que se organiza el intercambio** sobre un medio ya elegido. El esqueleto oficial pide tres clasificaciones, que son **independientes entre sí** y se combinan: un mismo enlace puede ser a la vez dúplex, síncrono y serie. Conviene subrayarlo desde el principio, porque el error habitual es tratarlas como si fueran tres respuestas alternativas a la misma pregunta.
+«Modo de comunicación» designa la **forma en que se organiza el intercambio** sobre un medio ya elegido. Hay tres clasificaciones, que son **independientes entre sí** y se combinan: un mismo enlace puede ser a la vez dúplex, síncrono y serie. Conviene subrayarlo desde el principio, porque el error habitual es tratarlas como si fueran tres respuestas alternativas a la misma pregunta.
 
 | Criterio | Pregunta que responde | Categorías |
 |---|---|---|
@@ -411,13 +411,13 @@ Ejemplos canónicos: el **walkie-talkie**, la radio profesional **TETRA** con su
 
 Ejemplos canónicos: la **telefonía** convencional, un enlace **Ethernet conmutado** moderno (par de transmisión y par de recepción separados), una **videollamada**.
 
-> **[DATO CLAVE EXAMEN]** Cuatro trampas frecuentes:
+> **[DATO CLAVE]** Cuatro trampas frecuentes:
 > **(1) El Wi-Fi es SEMIdúplex**, no dúplex, aunque el usuario navegue y suba a la vez. La razón es física: una antena que está transmitiendo **no puede escuchar** en la misma frecuencia, porque su propia emisión ensordece al receptor. Esa misma razón explica por qué en radio se usa **CSMA/CA** (evitación de colisiones) y no CSMA/CD (detección), como se ve en §7.1.
 > **(2) Ethernet moderno es DÚPLEX** desde que se generalizaron los conmutadores; era **semidúplex** con concentradores y con el coaxial en bus. El cambio no fue del cable, sino del **equipo**.
 > **(3) TDD no es semidúplex.** El TDD alterna turnos de emisión y recepción en el orden de los microsegundos, con lo que el servicio percibido **es dúplex**; el semidúplex, en cambio, es una limitación **visible** para el usuario, que tiene que esperar su turno.
 > **(4) «Bidireccional» no equivale a «simultáneo».** Símplex es unidireccional; semidúplex y dúplex son ambos bidireccionales, y lo que los separa es la **simultaneidad**.
 
-> **[EJEMPLO AYTO MADRID]** Los tres modos conviven en un mismo servicio municipal, el de emergencias. La red **TETRA** de la Policía Municipal y del SAMUR es **semidúplex** por diseño: el agente pulsa para hablar y suelta para escuchar. Esa aparente limitación es en realidad una **ventaja operativa** decisiva, porque permite la **comunicación de grupo** —todos los miembros de la patrulla oyen a la vez lo que dice uno— con una disciplina de turno clara, que es justo lo que se necesita en una emergencia y lo que una llamada dúplex punto a punto no da. En paralelo, el teléfono móvil del mismo agente es **dúplex**, y el panel de mensajería variable de la calle por el que se informa a la ciudadanía es **símplex**. Ver **Tema 38**.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Los tres modos conviven en un mismo servicio municipal, el de emergencias. La red **TETRA** de la Policía Municipal y del SAMUR es **semidúplex** por diseño: el agente pulsa para hablar y suelta para escuchar. Esa aparente limitación es en realidad una **ventaja operativa** decisiva, porque permite la **comunicación de grupo** —todos los miembros de la patrulla oyen a la vez lo que dice uno— con una disciplina de turno clara, que es justo lo que se necesita en una emergencia y lo que una llamada dúplex punto a punto no da. En paralelo, el teléfono móvil del mismo agente es **dúplex**, y el panel de mensajería variable de la calle por el que se informa a la ciudadanía es **símplex**. Ver **Tema 38**.
 
 ### 3.2. Modos según el sincronismo: transmisión síncrona y asíncrona
 
@@ -460,7 +460,7 @@ La transmisión síncrona es la de **todas** las redes de datos modernas: Ethern
 | **Coste del equipo** | Bajo | Mayor |
 | **Uso típico** | Puerto serie, consola de administración, teclados, sensores sencillos | **Ethernet, SDH, fibra, radio digital** |
 
-> **[DATO CLAVE EXAMEN]** No confundir **transmisión síncrona** (nivel físico: cómo se mantiene el reloj) con **comunicación síncrona** (nivel de aplicación: si el emisor espera respuesta antes de continuar). Son conceptos de capas distintas que comparten adjetivo. Una llamada a un servicio web puede ser «asíncrona» en el sentido de aplicación y viajar, sin embargo, por un enlace Ethernet perfectamente **síncrono** en el sentido físico.
+> **[DATO CLAVE]** No confundir **transmisión síncrona** (nivel físico: cómo se mantiene el reloj) con **comunicación síncrona** (nivel de aplicación: si el emisor espera respuesta antes de continuar). Son conceptos de capas distintas que comparten adjetivo. Una llamada a un servicio web puede ser «asíncrona» en el sentido de aplicación y viajar, sin embargo, por un enlace Ethernet perfectamente **síncrono** en el sentido físico.
 
 ### 3.3. Modos según la forma de transmisión: serie y paralelo
 
@@ -474,7 +474,7 @@ La intuición dice que el paralelo debería ser siempre más rápido, ya que mue
 2. **Diafonía**: ocho o dieciséis hilos conmutando a la vez y muy próximos se interfieren mutuamente.
 3. **Coste y volumen**: más hilos, conectores más grandes, cables más rígidos y más caros.
 
-> **[DATO CLAVE EXAMEN]** **A alta velocidad y a cualquier distancia gana la transmisión SERIE.** El propio bus interno del ordenador migró de paralelo a serie: **PCI → PCI Express**, **PATA/IDE → SATA**, **puerto paralelo → USB**, **SCSI → SAS**. Y **todas** las redes de datos —Ethernet, fibra, Wi-Fi, WAN— son **serie**. La forma moderna de ganar velocidad no es poner más hilos en paralelo, sino **agrupar varios canales serie independientes**, cada uno con su propio reloj recuperado (los «carriles» de PCI Express, los cuatro pares de 10GBASE-T, la agregación de enlaces 802.1AX).
+> **[DATO CLAVE]** **A alta velocidad y a cualquier distancia gana la transmisión SERIE.** El propio bus interno del ordenador migró de paralelo a serie: **PCI → PCI Express**, **PATA/IDE → SATA**, **puerto paralelo → USB**, **SCSI → SAS**. Y **todas** las redes de datos —Ethernet, fibra, Wi-Fi, WAN— son **serie**. La forma moderna de ganar velocidad no es poner más hilos en paralelo, sino **agrupar varios canales serie independientes**, cada uno con su propio reloj recuperado (los «carriles» de PCI Express, los cuatro pares de 10GBASE-T, la agregación de enlaces 802.1AX).
 
 | | **Serie** | **Paralelo** |
 |---|---|---|
@@ -485,7 +485,7 @@ La intuición dice que el paralelo debería ser siempre más rápido, ya que mue
 | **Coste** | Bajo | Alto |
 | **Uso actual** | **Todo**: USB, SATA, PCIe, Ethernet, fibra, radio | Residual: buses internos muy cortos, memoria |
 
-> **[REFERENCIA CRUZADA]** Los **buses y las interfaces internas** del equipo microinformático se estudian en el **Tema 11**, y la **conectividad de periféricos** (USB, Thunderbolt) en el **Tema 12**. Aquí interesa únicamente el criterio general —serie frente a paralelo— y su porqué físico.
+> **[RELACIÓN CON OTROS TEMAS]** Los **buses y las interfaces internas** del equipo microinformático se estudian en el **Tema 11**, y la **conectividad de periféricos** (USB, Thunderbolt) en el **Tema 12**. Aquí interesa únicamente el criterio general —serie frente a paralelo— y su porqué físico.
 
 ---
 
@@ -503,7 +503,7 @@ El enunciado oficial agrupa en una sola materia dos categorías de equipos que c
 - **ETD** (**Equipo Terminal de Datos**; en inglés **DTE**, *Data Terminal Equipment*): el equipo que es **fuente o destino** de los datos. Un ordenador, un servidor, una impresora de red, un terminal de punto de venta, un encaminador visto desde la línea del operador.
 - **ETCD** (**Equipo Terminal del Circuito de Datos**; en inglés **DCE**, *Data Circuit-terminating Equipment*): el equipo que **adapta** la señal del ETD a las características del medio de transmisión, y que habitualmente **proporciona la señal de reloj** al ETD y termina físicamente el circuito. Un módem, una unidad de terminación de red, una ONT de fibra.
 
-> **[DATO CLAVE EXAMEN]** Tres precisiones sobre ETD/ETCD que se preguntan: (1) el **ETCD suministra el reloj** en los enlaces síncronos, y el ETD se sincroniza con él; (2) el punto donde termina la red del operador y empieza la del cliente se denomina **punto de terminación de red (PTR)**, y es la **frontera de responsabilidad** jurídica y técnica; (3) el **equipo terminal** tiene definición legal: *«el equipo conectado directa o indirectamente a la interfaz de una red pública de telecomunicaciones para transmitir, procesar o recibir información»*, y la ley precisa que la conexión *«podrá realizarse por cable, fibra óptica o vía electromagnética»* y que **también son equipos terminales los de las estaciones terrenas de comunicación por satélite** [LGT, anexo II.19].
+> **[DATO CLAVE]** Tres precisiones sobre ETD/ETCD: (1) el **ETCD suministra el reloj** en los enlaces síncronos, y el ETD se sincroniza con él; (2) el punto donde termina la red del operador y empieza la del cliente se denomina **punto de terminación de red (PTR)**, y es la **frontera de responsabilidad** jurídica y técnica; (3) el **equipo terminal** tiene definición legal: *«el equipo conectado directa o indirectamente a la interfaz de una red pública de telecomunicaciones para transmitir, procesar o recibir información»*, y la ley precisa que la conexión *«podrá realizarse por cable, fibra óptica o vía electromagnética»* y que **también son equipos terminales los de las estaciones terrenas de comunicación por satélite** [LGT, anexo II.19].
 
 **Equipos de conversión.** Son los que traducen entre representaciones de la señal, y ya se anticiparon en §1.1:
 
@@ -517,7 +517,7 @@ El enunciado oficial agrupa en una sola materia dos categorías de equipos que c
 | **Multiplexor / demultiplexor** | Agrupa varios canales en uno y lo deshace | Multiplexor de la jerarquía digital, equipo DWDM |
 | **ONT / ONU** | Termina la fibra del acceso en casa del cliente | Cajita de fibra de las acometidas FTTH |
 
-> **[DATO CLAVE EXAMEN]** El «**router** que da el operador» es, en rigor, **tres equipos en una caja**: un **módem** u **ONT** que termina la línea, un **encaminador** que separa la red del cliente de la del operador, y un **conmutador** con **punto de acceso inalámbrico** que da servicio a los equipos de casa. Muchas preguntas sobre equipos de red se contestan simplemente **desagregando** ese dispositivo en sus funciones.
+> **[DATO CLAVE]** El «**router** que da el operador» es, en rigor, **tres equipos en una caja**: un **módem** u **ONT** que termina la línea, un **encaminador** que separa la red del cliente de la del operador, y un **conmutador** con **punto de acceso inalámbrico** que da servicio a los equipos de casa. Muchas dudas sobre equipos de red se resuelven simplemente **desagregando** ese dispositivo en sus funciones.
 
 **Otros equipos terminales.** El terminal ya no es solo el ordenador. En una red municipal actual conviven **teléfonos IP**, **impresoras multifunción**, **cámaras de videovigilancia IP**, **pantallas de gestión de turnos**, **lectores de tarjeta**, **terminales de control de presencia**, **sensores** de temperatura y ocupación y **paneles informativos**. Todos ellos son terminales a efectos de este tema, y todos comparten dos consecuencias prácticas: son **puntos de entrada** a la red que hay que autenticar y segmentar (§9.1), y muchos se alimentan por **PoE**, lo que los ata al conmutador también eléctricamente.
 
@@ -525,20 +525,20 @@ El enunciado oficial agrupa en una sola materia dos categorías de equipos que c
 
 La clasificación **canónica** de los equipos de interconexión es por la **capa del modelo de referencia** en la que operan: cuanto más alta es la capa a la que un equipo «mira», más información maneja, más decisiones puede tomar y más lento y caro resulta. Ver **diagrama D9**.
 
-> **[REFERENCIA CRUZADA]** El **modelo OSI y el modelo TCP/IP** son el objeto del **Tema 34**. Aquí solo se usan sus capas 1, 2 y 3 —física, enlace y red— como **criterio de clasificación** de los equipos, y basta con retener que la capa 1 maneja **señales**, la capa 2 maneja **tramas y direcciones MAC** dentro de una misma red, y la capa 3 maneja **paquetes y direcciones IP** entre redes distintas.
+> **[RELACIÓN CON OTROS TEMAS]** El **modelo OSI y el modelo TCP/IP** son el objeto del **Tema 34**. Aquí solo se usan sus capas 1, 2 y 3 —física, enlace y red— como **criterio de clasificación** de los equipos, y basta con retener que la capa 1 maneja **señales**, la capa 2 maneja **tramas y direcciones MAC** dentro de una misma red, y la capa 3 maneja **paquetes y direcciones IP** entre redes distintas.
 
 #### 4.2.1. Repetidores, concentradores, puentes, conmutadores y encaminadores
 
 **Repetidor (*repeater*) — capa 1.** Recibe una señal atenuada y deformada, la **regenera** y la retransmite con su forma y amplitud originales. Es importante entender que **no amplifica**: un amplificador multiplicaría también el ruido, mientras que el repetidor **reconstruye la señal digital limpia**, dejando el ruido acumulado a cero. Es la razón de ser de la superioridad de la transmisión digital sobre la analógica en larga distancia (§1.1). Su única función es **extender el alcance** del medio. No entiende de direcciones, ni de tramas, ni filtra nada.
 
-**Concentrador (*hub*) — capa 1.** Es, en esencia, un **repetidor multipuerto**. Todo lo que entra por un puerto sale **regenerado por todos los demás**, sin excepción y sin mirar a quién va dirigido. Consecuencias, que son la materia de examen:
+**Concentrador (*hub*) — capa 1.** Es, en esencia, un **repetidor multipuerto**. Todo lo que entra por un puerto sale **regenerado por todos los demás**, sin excepción y sin mirar a quién va dirigido. Consecuencias:
 
 - Todos los equipos conectados comparten el mismo medio: forman **un único dominio de colisión**.
 - El ancho de banda nominal se **reparte** entre todos los que transmiten.
 - El funcionamiento es forzosamente **semidúplex**.
 - Cualquier equipo conectado puede **ver el tráfico de todos los demás**, lo que es un problema de confidencialidad de primer orden.
 
-Está **totalmente obsoleto** y no se instala desde hace dos décadas, pero se pregunta muchísimo, precisamente porque su comparación con el conmutador es la que fija los conceptos.
+Está **totalmente obsoleto** y no se instala desde hace dos décadas, pero conviene conocerlo, precisamente porque su comparación con el conmutador es la que fija los conceptos.
 
 **Puente (*bridge*) — capa 2.** Une dos segmentos de red y **decide si deja pasar cada trama** en función de su **dirección MAC de destino**: si origen y destino están en el mismo segmento, la filtra; si están en segmentos distintos, la reenvía. Construye y mantiene una **tabla de direcciones MAC** aprendiendo de las tramas que ve pasar (*aprendizaje transparente*). Su efecto es **segmentar el dominio de colisión** —cada segmento pasa a tener el suyo—. Históricamente era un equipo con dos o cuatro puertos e implementado en software.
 
@@ -549,7 +549,7 @@ Está **totalmente obsoleto** y no se instala desde hace dos décadas, pero se p
 3. **Inundar (*flooding*)**: si la MAC de destino **no está** en la tabla, o es una dirección de **difusión** o **multidifusión**, envía la trama por **todos** los puertos menos el de entrada.
 4. **Envejecer**: elimina de la tabla las entradas que llevan un tiempo sin usarse.
 
-> **[DATO CLAVE EXAMEN]** **El conmutador segmenta el dominio de COLISIÓN, pero NO el dominio de DIFUSIÓN.** Cada puerto es su propio dominio de colisión y puede trabajar en **dúplex**, pero una trama de difusión (`FF:FF:FF:FF:FF:FF`) se propaga por **todos** los puertos. Para dividir el dominio de difusión solo hay dos caminos: un **encaminador** (capa 3) o unas **VLAN** [IEEE802.1] configuradas en el propio conmutador —que en realidad es lo mismo, porque cada VLAN es un dominio de difusión distinto y para pasar de una a otra hace falta encaminamiento—. Esta es, con diferencia, **la pregunta de equipos de red más repetida del temario**. Ver **diagrama D10**.
+> **[DATO CLAVE]** **El conmutador segmenta el dominio de COLISIÓN, pero NO el dominio de DIFUSIÓN.** Cada puerto es su propio dominio de colisión y puede trabajar en **dúplex**, pero una trama de difusión (`FF:FF:FF:FF:FF:FF`) se propaga por **todos** los puertos. Para dividir el dominio de difusión solo hay dos caminos: un **encaminador** (capa 3) o unas **VLAN** [IEEE802.1] configuradas en el propio conmutador —que en realidad es lo mismo, porque cada VLAN es un dominio de difusión distinto y para pasar de una a otra hace falta encaminamiento—. Esta es, con diferencia, **la distinción central sobre equipos de red**. Ver **diagrama D10**.
 
 Los conmutadores admiten tres **modos de conmutación**, con un compromiso entre latencia y fiabilidad:
 
@@ -568,7 +568,7 @@ Los conmutadores admiten tres **modos de conmutación**, con un compromiso entre
 - Ejecuta **protocolos de encaminamiento** (RIP, OSPF, BGP) para construir dinámicamente su tabla.
 - Suele concentrar funciones adicionales: traducción de direcciones (**NAT**), listas de control de acceso, calidad de servicio, terminación de túneles.
 
-**Conmutador de capa 3.** Equipo intermedio y muy frecuente en la práctica: físicamente un conmutador, con muchos puertos y conmutación por hardware, pero capaz de **encaminar entre VLAN** a velocidad de cable. Es el corazón habitual del núcleo de una red de edificio. La distinción de examen: el **conmutador de capa 3 encamina entre las redes internas**, mientras que el **encaminador de frontera** conecta con redes externas y aporta las funciones de acceso y seguridad.
+**Conmutador de capa 3.** Equipo intermedio y muy frecuente en la práctica: físicamente un conmutador, con muchos puertos y conmutación por hardware, pero capaz de **encaminar entre VLAN** a velocidad de cable. Es el corazón habitual del núcleo de una red de edificio. La distinción clave: el **conmutador de capa 3 encamina entre las redes internas**, mientras que el **encaminador de frontera** conecta con redes externas y aporta las funciones de acceso y seguridad.
 
 | | **Concentrador** | **Conmutador** | **Encaminador** |
 |---|---|---|---|
@@ -600,12 +600,12 @@ Los conmutadores admiten tres **modos de conmutación**, con un compromiso entre
 
 #### 4.2.2. Pasarelas y puntos de acceso inalámbricos
 
-**Pasarela (*gateway*).** El término tiene dos acepciones y la ambigüedad se explota en el examen:
+**Pasarela (*gateway*).** El término tiene dos acepciones:
 
 1. **Acepción estricta y clásica**: equipo que interconecta redes con **arquitecturas o protocolos distintos**, realizando la **traducción completa** entre ellos, hasta la capa de aplicación si es preciso. Es, por definición, el equipo de interconexión **de más alto nivel**. Ejemplos: una **pasarela de voz** que traduce entre la red telefónica conmutada y la telefonía IP; una pasarela de correo entre dos sistemas de mensajería distintos; una pasarela de IoT que traduce entre Zigbee o LoRaWAN e IP; una pasarela de pago que traduce entre un comercio y una red bancaria.
 2. **Acepción coloquial**: la «**puerta de enlace predeterminada**» (*default gateway*) que se configura en cada equipo, que es simplemente **la dirección IP del encaminador** al que se envía todo lo que no es local. En esta acepción, la pasarela es un **encaminador de capa 3**, no un traductor de protocolos.
 
-> **[DATO CLAVE EXAMEN]** Si el enunciado pregunta por el equipo de interconexión que opera **en las capas superiores** y **traduce entre arquitecturas distintas**, la respuesta es **pasarela**. Si pregunta por la dirección que se configura en el equipo para salir de la red local, la respuesta es **puerta de enlace predeterminada**, que es un **encaminador**. Es el mismo nombre para dos cosas distintas.
+> **[DATO CLAVE]** Si el enunciado pregunta por el equipo de interconexión que opera **en las capas superiores** y **traduce entre arquitecturas distintas**, la respuesta es **pasarela**. Si pregunta por la dirección que se configura en el equipo para salir de la red local, la respuesta es **puerta de enlace predeterminada**, que es un **encaminador**. Es el mismo nombre para dos cosas distintas.
 
 **Punto de acceso inalámbrico (*access point*, AP) — capa 2.** Equipo que crea una **celda** de red inalámbrica y actúa de puente entre esa celda y la red cableada. Conceptualmente es un **puente entre dos medios**: convierte tramas 802.11 en tramas 802.3 y viceversa. Sus elementos, que se detallan en §7.1:
 
@@ -626,17 +626,17 @@ En instalaciones profesionales los puntos de acceso no se configuran uno a uno, 
 | **Controlador inalámbrico (WLC)** | 2 | Gestiona una flota de puntos de acceso | Este tema, §7.1 |
 | **Servidor de acceso remoto / concentrador VPN** | 3 | Termina túneles cifrados de acceso remoto | **T36** |
 
-> **[EJEMPLO AYTO MADRID]** Recorrido de un paquete desde el puesto de la Oficina de Atención a la Ciudadanía hasta la aplicación de tramitación del CPD del IAM, nombrando cada equipo: (1) la **tarjeta de red** del puesto —terminal— pone la trama en el par trenzado; (2) el **conmutador de planta** la recibe, la asocia a la VLAN de puestos de trabajo y la reenvía por su enlace de subida, sin sacarla por los demás puertos; (3) el **conmutador de capa 3** del edificio decide que el destino está en otra red y **encamina** el paquete; (4) el **encaminador de frontera** lo mete por el enlace de fibra hacia el CPD, aplicando la calidad de servicio contratada; (5) en el otro extremo, un **cortafuegos** comprueba la política antes de dejarlo entrar; (6) un **balanceador** elige a cuál de los servidores de la granja se lo entrega. Seis equipos, cuatro capas y una sola pulsación de tecla.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Recorrido de un paquete desde el puesto de la Oficina de Atención a la Ciudadanía hasta la aplicación de tramitación del CPD del IAM, nombrando cada equipo: (1) la **tarjeta de red** del puesto —terminal— pone la trama en el par trenzado; (2) el **conmutador de planta** la recibe, la asocia a la VLAN de puestos de trabajo y la reenvía por su enlace de subida, sin sacarla por los demás puertos; (3) el **conmutador de capa 3** del edificio decide que el destino está en otra red y **encamina** el paquete; (4) el **encaminador de frontera** lo mete por el enlace de fibra hacia el CPD, aplicando la calidad de servicio contratada; (5) en el otro extremo, un **cortafuegos** comprueba la política antes de dejarlo entrar; (6) un **balanceador** elige a cuál de los servidores de la granja se lo entrega. Seis equipos, cuatro capas y una sola pulsación de tecla.
 
 ---
 
 ## 5. Redes de comunicaciones
 
-Una **red de comunicaciones** es el conjunto de medios de transmisión, equipos y protocolos que permite la comunicación entre un número arbitrario de terminales. Como en §2.2.1, conviene arrancar de la definición legal, porque es la que delimita el objeto de la regulación y es literalmente preguntable:
+Una **red de comunicaciones** es el conjunto de medios de transmisión, equipos y protocolos que permite la comunicación entre un número arbitrario de terminales. Como en §2.2.1, conviene arrancar de la definición legal, porque es la que delimita el objeto de la regulación:
 
-> **[DATO CLAVE EXAMEN]** **Red de comunicaciones electrónicas**: *«los sistemas de transmisión, se basen o no en una infraestructura permanente o en una capacidad de administración centralizada, y, cuando proceda, los equipos de conmutación o encaminamiento y demás recursos, incluidos los elementos de red que no son activos, que permitan el transporte de señales mediante cables, ondas hertzianas, medios ópticos u otros medios electromagnéticos con inclusión de las redes de satélites, redes fijas (de conmutación de circuitos y de paquetes, incluido internet) y móviles, sistemas de tendido eléctrico, en la medida en que se utilicen para la transmisión de señales, redes utilizadas para la radiodifusión sonora y televisiva y redes de televisión por cable, **con independencia del tipo de información transportada**»* [LGT, anexo II.61]. Obsérvese que la definición incluye expresamente **los elementos que no son activos** —conductos, arquetas, torres— y que es **neutral respecto del contenido**.
+> **[DATO CLAVE]** **Red de comunicaciones electrónicas**: *«los sistemas de transmisión, se basen o no en una infraestructura permanente o en una capacidad de administración centralizada, y, cuando proceda, los equipos de conmutación o encaminamiento y demás recursos, incluidos los elementos de red que no son activos, que permitan el transporte de señales mediante cables, ondas hertzianas, medios ópticos u otros medios electromagnéticos con inclusión de las redes de satélites, redes fijas (de conmutación de circuitos y de paquetes, incluido internet) y móviles, sistemas de tendido eléctrico, en la medida en que se utilicen para la transmisión de señales, redes utilizadas para la radiodifusión sonora y televisiva y redes de televisión por cable, **con independencia del tipo de información transportada**»* [LGT, anexo II.61]. Obsérvese que la definición incluye expresamente **los elementos que no son activos** —conductos, arquetas, torres— y que es **neutral respecto del contenido**.
 
-La misma ley añade dos definiciones cuantitativas que se preguntan por su cifra:
+La misma ley añade dos definiciones cuantitativas:
 
 - **Red de alta capacidad**: la capaz de prestar acceso de banda ancha a **al menos 30 Mbps** [LGT, anexo II.62].
 - **Red de muy alta capacidad**: la compuesta **totalmente de elementos de fibra óptica** al menos hasta el punto de distribución de la localización donde se presta el servicio, **o** la capaz de ofrecer un rendimiento similar en condiciones usuales de máxima demanda [LGT, anexo II.63].
@@ -645,7 +645,7 @@ Y una definición de la que penden consecuencias jurídicas importantes: **red p
 
 ### 5.1. Clasificación por cobertura geográfica: PAN, LAN, MAN y WAN
 
-La clasificación por **extensión geográfica** es la más clásica y la que más se pregunta. Ver **diagrama D11**.
+La clasificación por **extensión geográfica** es la más clásica. Ver **diagrama D11**.
 
 | Red | Nombre | Alcance típico | Titularidad | Ejemplos |
 |---|---|---|---|---|
@@ -663,12 +663,12 @@ A esa escala principal se añaden categorías por criterios distintos que convie
 - **WLAN, WPAN, WMAN, WWAN**: las versiones **inalámbricas** de las anteriores. La `W` inicial es de *wireless*, y es un prefijo, no un nivel más de la escala (§7).
 - **GAN** (*Global Area Network*): término poco usado para la cobertura mundial, típicamente por satélite.
 
-> **[DATO CLAVE EXAMEN]** Los tres criterios que **de verdad** distinguen una LAN de una WAN, más allá de los kilómetros, y que son los que hacen buena la clasificación:
+> **[DATO CLAVE]** Los tres criterios que **de verdad** distinguen una LAN de una WAN, más allá de los kilómetros, y que son los que hacen buena la clasificación:
 > **(1) Titularidad del medio.** En la **LAN** el cableado es **propiedad** de quien la explota; en la **WAN** casi siempre se **contrata** a un operador, porque atraviesa dominio público. Esta es la diferencia estructural.
 > **(2) Velocidad y latencia.** La LAN ofrece gigabits con latencias de microsegundos; la WAN, caudales menores por unidad de coste y latencias de milisegundos.
 > **(3) Tasa de error.** La LAN opera sobre medios controlados y con tasas de error muy bajas; la WAN atraviesa medios heterogéneos y necesita más control de errores.
 
-**Otras clasificaciones útiles de las redes.** El enunciado oficial no las pide expresamente, pero aparecen en preguntas de clasificación:
+**Otras clasificaciones útiles de las redes.** El enunciado oficial no las pide expresamente, pero conviene conocerlas:
 
 | Criterio | Categorías |
 |---|---|
@@ -680,12 +680,12 @@ A esa escala principal se añaden categorías por criterios distintos que convie
 
 ### 5.2. Topologías de red físicas y lógicas
 
-La **topología** es la forma en que se disponen los nodos y los enlaces de una red. Hay que distinguir dos planos, y esa distinción es en sí misma una pregunta:
+La **topología** es la forma en que se disponen los nodos y los enlaces de una red. Hay que distinguir dos planos:
 
 - **Topología física**: cómo está **tendido el cable** y dónde están físicamente los equipos.
 - **Topología lógica**: cómo **circula realmente la señal** y cómo se accede al medio, con independencia del trazado.
 
-> **[DATO CLAVE EXAMEN]** El ejemplo canónico de divergencia entre ambas: **Ethernet moderno sobre conmutador es una estrella física** —todos los cables van radialmente al armario— **con topología lógica de bus conmutado**, en la que cada puerto es un enlace punto a punto dedicado. Y el caso histórico más citado: **Token Ring** era una **estrella física** (todos los cables iban a una unidad de acceso central, la MAU) con **anillo lógico**, porque la señal recorría internamente un bucle. Confundir los dos planos es el error clásico.
+> **[DATO CLAVE]** El ejemplo canónico de divergencia entre ambas: **Ethernet moderno sobre conmutador es una estrella física** —todos los cables van radialmente al armario— **con topología lógica de bus conmutado**, en la que cada puerto es un enlace punto a punto dedicado. Y el caso histórico más citado: **Token Ring** era una **estrella física** (todos los cables iban a una unidad de acceso central, la MAU) con **anillo lógico**, porque la señal recorría internamente un bucle. Confundir los dos planos es el error clásico.
 
 Ver **diagrama D12**. Las topologías físicas básicas son seis:
 
@@ -730,7 +730,7 @@ Ver **diagrama D12**. Las topologías físicas básicas son seis:
 > **(b)** Con 15: `15 · 14 / 2 = 105`. Enlaces nuevos: `105 − 66 = **39**`. Es decir, **añadir 3 nodos exige 39 enlaces nuevos**, uno por cada nodo preexistente y los de entre ellos.
 > **(c)** El crecimiento es **cuadrático**: la malla completa **no escala**. La solución real es una **malla parcial** —redundancia solo donde el análisis de riesgos la exige— o un **doble anillo**, que con `n` enlaces ya garantiza dos caminos entre cualquier par de nodos. Por eso las redes metropolitanas de fibra se construyen en anillo y no en malla.
 
-**Criterios de elección.** Cuadro resumen, que es lo que hay que llevar al examen:
+**Criterios de elección.** Cuadro resumen:
 
 | Topología | Coste de cable | Tolerancia a fallos | Facilidad de diagnóstico | Punto único de fallo |
 |---|---|---|---|---|
@@ -740,7 +740,7 @@ Ver **diagrama D12**. Las topologías físicas básicas son seis:
 | **Árbol** | Medio-alto | Media | Fácil | Los nodos superiores |
 | **Malla** | **Máximo** | **Máxima** | Compleja | **Ninguno** |
 
-> **[EJEMPLO AYTO MADRID]** La red de la Oficina de Atención a la Ciudadanía es un **árbol**: cada puesto en estrella hasta el conmutador de planta, cada conmutador de planta en estrella hasta el conmutador del edificio. Ese conmutador de edificio se conecta al CPD del IAM por **dos** caminos —fibra principal y radioenlace de respaldo—, lo que introduce una **malla parcial mínima** de dos enlaces, que es la respuesta económicamente razonable al riesgo de corte de fibra por una obra en la vía pública. Y el nivel metropolitano que une los centros municipales se organiza en **anillo** de fibra, con protección automática. Tres topologías distintas en tres niveles del mismo servicio, cada una elegida por su criterio: **coste** abajo, **redundancia** arriba.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** La red de la Oficina de Atención a la Ciudadanía es un **árbol**: cada puesto en estrella hasta el conmutador de planta, cada conmutador de planta en estrella hasta el conmutador del edificio. Ese conmutador de edificio se conecta al CPD del IAM por **dos** caminos —fibra principal y radioenlace de respaldo—, lo que introduce una **malla parcial mínima** de dos enlaces, que es la respuesta económicamente razonable al riesgo de corte de fibra por una obra en la vía pública. Y el nivel metropolitano que une los centros municipales se organiza en **anillo** de fibra, con protección automática. Tres topologías distintas en tres niveles del mismo servicio, cada una elegida por su criterio: **coste** abajo, **redundancia** arriba.
 
 ---
 
@@ -751,7 +751,7 @@ Esta sección responde a una pregunta distinta de la anterior: no **dónde** est
 - **Redes de conmutación** (o **punto a punto**): la información viaja de nodo en nodo por una sucesión de enlaces, y en cada nodo intermedio **alguien decide** hacia dónde sigue. Ese acto de decisión es la **conmutación**. Son las redes de gran extensión.
 - **Redes de difusión** (*broadcast*): existe **un único canal compartido** por todos los nodos, de modo que lo que emite uno **lo reciben todos**, y cada cual decide si el mensaje va dirigido a él. No hay nodos intermedios que decidan. Son las redes pequeñas y las radioeléctricas.
 
-> **[DATO CLAVE EXAMEN]** La correlación clásica: **las redes pequeñas y locales tienden a ser de difusión** (medio compartido) y **las grandes tienden a ser de conmutación** (imposible compartir un solo medio entre millones de nodos). No es una ley absoluta —la LAN conmutada moderna es punto a punto por puerto— pero es el criterio con el que se construyó la clasificación y el que se pregunta.
+> **[DATO CLAVE]** La correlación clásica: **las redes pequeñas y locales tienden a ser de difusión** (medio compartido) y **las grandes tienden a ser de conmutación** (imposible compartir un solo medio entre millones de nodos). No es una ley absoluta —la LAN conmutada moderna es punto a punto por puerto— pero es el criterio con el que se construyó la clasificación.
 
 ### 6.1. Redes de conmutación
 
@@ -790,7 +790,7 @@ La fragmentación en paquetes pequeños resuelve de golpe los dos grandes defect
 
 Su recurso clave es la **multiplexación estadística**: el enlace se reparte dinámicamente entre quien tiene algo que enviar en cada instante, sin reservas fijas. Eso da un aprovechamiento del medio muy superior, al precio de que, si en un instante todos quieren transmitir, hay **congestión**, colas, **fluctuación** y eventualmente **pérdida de paquetes**.
 
-Dos modalidades, y la distinción es materia segura de examen:
+Dos modalidades:
 
 | | **Datagrama** | **Circuito virtual** |
 |---|---|---|
@@ -801,7 +801,7 @@ Dos modalidades, y la distinción es materia segura de examen:
 | **Ante caída de un nodo** | Los paquetes se **reencaminan** solos | El circuito **se cae** y hay que rehacerlo |
 | **Ejemplos** | **IP**, la base de internet | **X.25**, **Frame Relay**, **ATM**, **MPLS** |
 
-> **[DATO CLAVE EXAMEN]** El **circuito virtual no es un circuito**: no hay reserva de recursos físicos ni camino dedicado, solo una **ruta preacordada** identificada por una etiqueta corta. Es una técnica de **conmutación de paquetes**, no de circuitos. Y **MPLS**, el mecanismo con el que los operadores construyen hoy las redes privadas virtuales de sus clientes corporativos, es exactamente eso: conmutación de paquetes por **etiquetas** con lógica de circuito virtual. Confundirlo con la conmutación de circuitos es el error clásico de esta sección.
+> **[DATO CLAVE]** El **circuito virtual no es un circuito**: no hay reserva de recursos físicos ni camino dedicado, solo una **ruta preacordada** identificada por una etiqueta corta. Es una técnica de **conmutación de paquetes**, no de circuitos. Y **MPLS**, el mecanismo con el que los operadores construyen hoy las redes privadas virtuales de sus clientes corporativos, es exactamente eso: conmutación de paquetes por **etiquetas** con lógica de circuito virtual. Confundirlo con la conmutación de circuitos es el error clásico de esta sección.
 
 **Cuadro comparativo de las tres técnicas** —el que hay que ser capaz de reproducir—:
 
@@ -839,7 +839,7 @@ Dos modalidades, y la distinción es materia segura de examen:
 
 **El principio de difusión.** En una red de difusión existe **un solo canal de comunicación compartido** por todas las estaciones. Cuando una transmite, **todas las demás reciben** la señal; cada una examina la dirección de destino y se queda con el mensaje solo si va dirigido a ella, descartándolo en caso contrario.
 
-De ese principio se derivan cuatro consecuencias que son materia de examen:
+De ese principio se derivan cuatro consecuencias:
 
 1. **Hace falta un método de acceso al medio**, porque si dos estaciones transmiten a la vez se produce una **colisión**. Ese método es CSMA/CD en la Ethernet clásica, **CSMA/CA** en Wi-Fi (§7.1) y el paso de testigo en las redes de anillo. *Su desarrollo corresponde al **Tema 37**.*
 2. **La capacidad se reparte** entre todas las estaciones activas.
@@ -857,10 +857,10 @@ Sobre esa base se definen los **cuatro modos de entrega**, que hay que distingui
 
 **Direcciones de difusión y de multidifusión.** Los datos concretos son de memorización obligatoria:
 
-> **[DATO CLAVE EXAMEN]**
+> **[DATO CLAVE]**
 > **Nivel 2 (Ethernet).** Dirección MAC de **difusión**: **`FF:FF:FF:FF:FF:FF`** (los 48 bits a uno). Las MAC de **multidifusión** son las que tienen el **bit menos significativo del primer octeto a 1**; el rango reservado para multidifusión IPv4 empieza por **`01:00:5E`**.
 > **Nivel 3 (IPv4).** Difusión **limitada**: **`255.255.255.255`**, que **nunca se encamina** —el encaminador la descarta siempre—. Difusión **dirigida a subred**: la que tiene todos los bits de host a 1 (por ejemplo, `192.168.10.255` en una `/24`). **Multidifusión**: el antiguo espacio de **clase D**, **`224.0.0.0/4`** (de 224.0.0.0 a 239.255.255.255), con direcciones bien conocidas como `224.0.0.1` (todos los equipos del enlace) y `224.0.0.2` (todos los encaminadores).
-> **Nivel 3 (IPv6).** **IPv6 NO TIENE DIFUSIÓN.** La sustituye por **multidifusión** al grupo de todos los nodos del enlace, **`ff02::1`**; el prefijo de toda la multidifusión IPv6 es **`ff00::/8`**. Y añade la **anydifusión**. Esta supresión es una de las preguntas más frecuentes sobre IPv6.
+> **Nivel 3 (IPv6).** **IPv6 NO TIENE DIFUSIÓN.** La sustituye por **multidifusión** al grupo de todos los nodos del enlace, **`ff02::1`**; el prefijo de toda la multidifusión IPv6 es **`ff00::/8`**. Y añade la **anydifusión**.
 > **Protocolos de suscripción a grupos**: **IGMP** en IPv4 [RFC1112] y **MLD** en IPv6.
 
 **Para qué sirve la difusión.** No es un residuo: es **imprescindible** para el funcionamiento de la red, porque resuelve el problema del arranque —cómo hablar con alguien de quien aún no se sabe nada—. Usos legítimos e ineludibles:
@@ -872,15 +872,15 @@ Sobre esa base se definen los **cuatro modos de entrega**, que hay que distingui
 
 **El problema: la tormenta de difusión.** Como toda estación recibe **y procesa** cada trama de difusión —la procesa la CPU, no solo la tarjeta—, un exceso de difusión degrada a **todos** los equipos del dominio a la vez. En su forma extrema, la **tormenta de difusión** satura el dominio hasta dejarlo inutilizable.
 
-> **[DATO CLAVE EXAMEN]** La causa más grave de tormenta de difusión es un **bucle de nivel 2**: dos conmutadores unidos por dos caminos. Una única trama de difusión da vueltas indefinidamente y se **multiplica** en cada nodo, y no hay nada que la detenga **porque la trama Ethernet no tiene campo TTL**, a diferencia del paquete IP. En cuestión de segundos la red cae por completo. Los tres remedios, en orden: (1) **STP/RSTP** [IEEE802.1], que bloquea lógicamente los enlaces redundantes y los reactiva si falla el principal; (2) **VLAN**, que acotan el tamaño del dominio de difusión y por tanto el alcance del desastre; (3) **control de tormentas** en el conmutador, que limita el porcentaje de tráfico de difusión admitido por puerto.
+> **[DATO CLAVE]** La causa más grave de tormenta de difusión es un **bucle de nivel 2**: dos conmutadores unidos por dos caminos. Una única trama de difusión da vueltas indefinidamente y se **multiplica** en cada nodo, y no hay nada que la detenga **porque la trama Ethernet no tiene campo TTL**, a diferencia del paquete IP. En cuestión de segundos la red cae por completo. Los tres remedios, en orden: (1) **STP/RSTP** [IEEE802.1], que bloquea lógicamente los enlaces redundantes y los reactiva si falla el principal; (2) **VLAN**, que acotan el tamaño del dominio de difusión y por tanto el alcance del desastre; (3) **control de tormentas** en el conmutador, que limita el porcentaje de tráfico de difusión admitido por puerto.
 
 **Multidifusión: el término medio.** La multidifusión resuelve el problema de enviar el mismo contenido a **muchos pero no a todos**, sin replicarlo tantas veces como destinatarios. El emisor envía **una sola copia**, y la red la **replica solo donde hace falta**, en los puntos de bifurcación del árbol de distribución. Sus aplicaciones típicas: **difusión de vídeo (IPTV)**, **actualización simultánea** de imágenes de sistema a cientos de puestos, **audioconferencia**, distribución de cotizaciones. En redes locales los conmutadores implementan **vigilancia de IGMP (*IGMP snooping*)** para no inundar la multidifusión por todos los puertos, sino solo por aquellos donde hay suscriptores.
 
 **Las redes de difusión en sentido estricto: la radiodifusión.** El término «red de difusión» tiene además su acepción tradicional, la de los **servicios de comunicación audiovisual**: radio y televisión. Su modelo es **símplex puro** y **uno a todos** sin retorno: un centro emisor y un número indeterminado de receptores pasivos, sin canal de vuelta y sin conocimiento de quién recibe.
 
-> **[DATO CLAVE EXAMEN]** En la **televisión digital terrestre**, la unidad de transmisión es el **múltiple digital o múltiplex**: *«la señal compuesta transmitida en una frecuencia radioeléctrica determinada que, mediante tecnología digital, permite la incorporación de las señales correspondientes a varios servicios de comunicación audiovisual y de varios servicios de televisión conectada y de comunicaciones electrónicas»* [L13-2022]. Es decir, **un múltiplex es un canal radioeléctrico que transporta varios canales de televisión** mediante multiplexación digital: esa es exactamente la ganancia del paso de analógico a digital, y la razón de que se pudiera liberar espectro (el **dividendo digital**, §8.2).
+> **[DATO CLAVE]** En la **televisión digital terrestre**, la unidad de transmisión es el **múltiple digital o múltiplex**: *«la señal compuesta transmitida en una frecuencia radioeléctrica determinada que, mediante tecnología digital, permite la incorporación de las señales correspondientes a varios servicios de comunicación audiovisual y de varios servicios de televisión conectada y de comunicaciones electrónicas»* [L13-2022]. Es decir, **un múltiplex es un canal radioeléctrico que transporta varios canales de televisión** mediante multiplexación digital: esa es exactamente la ganancia del paso de analógico a digital, y la razón de que se pudiera liberar espectro (el **dividendo digital**, §8.2).
 
-> **[EJEMPLO AYTO MADRID]** El sistema de **gestión de turnos** de la Oficina de Atención a la Ciudadanía usa los tres modos a la vez, y es un buen ejercicio de identificación. Cuando el equipo del mostrador arranca y pide dirección al servidor DHCP, usa **difusión**, porque aún no tiene identidad ni sabe a quién preguntar. Cuando el servidor de turnos envía el número que toca a las **cuatro pantallas** de la sala de espera, lo hace por **multidifusión**: una sola copia por la red, replicada solo hacia los puertos con suscriptores. Y cuando el empleado consulta el expediente del ciudadano que acaba de sentarse, la sesión con el servidor del CPD es **unidifusión**. Un mismo servicio, tres modos de entrega, elegido cada uno por su naturaleza.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** El sistema de **gestión de turnos** de la Oficina de Atención a la Ciudadanía usa los tres modos a la vez, y es un buen ejercicio de identificación. Cuando el equipo del mostrador arranca y pide dirección al servidor DHCP, usa **difusión**, porque aún no tiene identidad ni sabe a quién preguntar. Cuando el servidor de turnos envía el número que toca a las **cuatro pantallas** de la sala de espera, lo hace por **multidifusión**: una sola copia por la red, replicada solo hacia los puertos con suscriptores. Y cuando el empleado consulta el expediente del ciudadano que acaba de sentarse, la sesión con el servidor del CPD es **unidifusión**. Un mismo servicio, tres modos de entrega, elegido cada uno por su naturaleza.
 
 ---
 
@@ -895,7 +895,7 @@ Las redes inalámbricas replican la escala de cobertura de §5.1 anteponiendo la
 | **WMAN** | Kilómetros | **WiMAX** [IEEE802.16], radioenlaces urbanos |
 | **WWAN** | Regional o global | **Redes celulares** (2G a 5G), **satélite**, **LPWAN** |
 
-Todas comparten cuatro rasgos derivados de usar un medio **no guiado y compartido**, y cada uno tiene consecuencias que se preguntan:
+Todas comparten cuatro rasgos derivados de usar un medio **no guiado y compartido**, y cada uno tiene consecuencias:
 
 1. **El medio es compartido y semidúplex** (§3.1): la capacidad anunciada se reparte y el caudal real es muy inferior al nominal.
 2. **La cobertura es un volumen, no una línea**: no termina en la pared, lo que crea un problema de seguridad estructural (§9.1) y otro de interferencia con los vecinos.
@@ -923,7 +923,7 @@ Todas comparten cuatro rasgos derivados de usar un medio **no guiado y compartid
 | **5 GHz** | Varios subbloques entre 5,15 y 5,725 GHz | **Muchos** (19 o más de 20 MHz) | Más capacidad y menos interferencia; **menor alcance**; algunos subbloques exigen **DFS** y control de potencia por compartirse con radares |
 | **6 GHz** | 5,925-6,425 GHz en la UE | Muchos | **Wi-Fi 6E y Wi-Fi 7**: espectro limpio, canales muy anchos, alcance corto |
 
-> **[DATO CLAVE EXAMEN]** En **2,4 GHz solo hay tres canales que no se solapan** —**1, 6 y 11**— porque cada canal ocupa 20 MHz y están separados solo 5 MHz. Es el dato que explica la mayor parte de los problemas de rendimiento del Wi-Fi doméstico y el criterio básico de planificación de canales en un despliegue profesional: celdas adyacentes **nunca** en el mismo canal.
+> **[DATO CLAVE]** En **2,4 GHz solo hay tres canales que no se solapan** —**1, 6 y 11**— porque cada canal ocupa 20 MHz y están separados solo 5 MHz. Es el dato que explica la mayor parte de los problemas de rendimiento del Wi-Fi doméstico y el criterio básico de planificación de canales en un despliegue profesional: celdas adyacentes **nunca** en el mismo canal.
 
 **Las generaciones.** La Wi-Fi Alliance introdujo la numeración comercial para hacer legible la nomenclatura del IEEE [WIFI-ALLIANCE]. La tabla es de memorización directa:
 
@@ -940,7 +940,7 @@ Todas comparten cuatro rasgos derivados de usar un medio **no guiado y compartid
 | **Wi-Fi 7** | **802.11be** | **2025** | 2,4, 5 y 6 GHz | ~46 Gbit/s | Canales de **320 MHz**, **4096-QAM**, **operación multienlace (MLO)** |
 | **Wi-Fi 8** | **802.11bn** | ~**2028** | 2,4, 5 y 6 GHz | En definición | **Ultra alta fiabilidad**: estabilidad en el borde de cobertura y latencia acotada |
 
-> **[DATO CLAVE EXAMEN]** Cuatro datos precisos sobre las generaciones recientes:
+> **[DATO CLAVE]** Cuatro datos precisos sobre las generaciones recientes:
 > **(1)** **IEEE 802.11be (Wi-Fi 7) se publicó el 22 de julio de 2025** [IEEE802.11]; es el estándar maduro del ciclo actual.
 > **(2)** Su rasgo distintivo no es la velocidad, sino la **operación multienlace (MLO)**: un mismo cliente usa **varias bandas simultáneamente** —2,4, 5 y 6 GHz— agregando capacidad y, sobre todo, ganando **fiabilidad**, porque si una banda se degrada el tráfico sigue por las otras.
 > **(3)** **4096-QAM** significa `log₂(4096) = **12 bits por símbolo**`, frente a los 10 de Wi-Fi 6 (§1.2).
@@ -971,7 +971,7 @@ Novedades recientes de las que conviene tener la referencia: desde **5.2**, **LE
 | **Thread / 6LoWPAN** | [IEEE802.15].4 | 2,4 GHz | Malla | Como Zigbee pero **con IPv6 nativo** |
 | **UWB** (banda ultraancha) | 802.15.4z | 3,1-10,6 GHz | Decenas de m | **Localización de precisión** (centímetros) por tiempo de vuelo |
 
-> **[DATO CLAVE EXAMEN]** **NFC: 13,56 MHz y ~10 cm de alcance.** Los dos datos se preguntan juntos, y el alcance corto **es la característica de seguridad**, no una limitación: obliga a una aproximación deliberada y hace impracticable la interceptación a distancia. NFC es un subconjunto de RFID de alta frecuencia con capacidad **bidireccional**, mientras que el RFID clásico es unidireccional de etiqueta a lector.
+> **[DATO CLAVE]** **NFC: 13,56 MHz y ~10 cm de alcance.** Los dos datos van juntos, y el alcance corto **es la característica de seguridad**, no una limitación: obliga a una aproximación deliberada y hace impracticable la interceptación a distancia. NFC es un subconjunto de RFID de alta frecuencia con capacidad **bidireccional**, mientras que el RFID clásico es unidireccional de etiqueta a lector.
 
 ### 7.2. Redes de área metropolitana y extensa inalámbricas
 
@@ -983,7 +983,7 @@ Junto a él, la WMAN realmente desplegada en las ciudades es la de **radioenlace
 
 **B. WWAN: satélite.**
 
-El satélite es un **repetidor de microondas** situado en órbita. Su clasificación por altura es materia segura de examen:
+El satélite es un **repetidor de microondas** situado en órbita. Su clasificación por altura:
 
 | Órbita | Altura | Periodo | Latencia ida y vuelta | Rasgos |
 |---|---|---|---|---|
@@ -991,7 +991,7 @@ El satélite es un **repetidor de microondas** situado en órbita. Su clasificac
 | **MEO** (media) | 2.000-35.786 km | Horas | ≈ 100 ms | Órbita de **GPS**, **Galileo** y **GLONASS** |
 | **LEO** (baja) | **300-2.000 km** | ≈ 90 min | **≈ 20-50 ms** | Latencia baja, pero cada satélite **cruza el cielo en minutos**: exige **constelaciones** de cientos o miles y antenas con seguimiento |
 
-> **[DATO CLAVE EXAMEN]** La **altura de la órbita geoestacionaria es 35.786 km**, y de ahí se deduce todo lo demás: la señal recorre ida y vuelta unos 72.000 km, que a la velocidad de la luz suponen unos **240-250 ms**, y eso **antes** de procesar nada. Por eso el satélite GEO es excelente para **difusión de televisión** —que tolera cualquier retardo— y malo para videoconferencia o control en tiempo real, y por eso las constelaciones **LEO** han cambiado el panorama del acceso por satélite. Bandas de trabajo: **C** (≈ 4/6 GHz, robusta frente a la lluvia), **Ku** (≈ 12/14 GHz, la de la televisión doméstica) y **Ka** (≈ 20/30 GHz, más capacidad y más sensible a la lluvia).
+> **[DATO CLAVE]** La **altura de la órbita geoestacionaria es 35.786 km**, y de ahí se deduce todo lo demás: la señal recorre ida y vuelta unos 72.000 km, que a la velocidad de la luz suponen unos **240-250 ms**, y eso **antes** de procesar nada. Por eso el satélite GEO es excelente para **difusión de televisión** —que tolera cualquier retardo— y malo para videoconferencia o control en tiempo real, y por eso las constelaciones **LEO** han cambiado el panorama del acceso por satélite. Bandas de trabajo: **C** (≈ 4/6 GHz, robusta frente a la lluvia), **Ku** (≈ 12/14 GHz, la de la televisión doméstica) y **Ka** (≈ 20/30 GHz, más capacidad y más sensible a la lluvia).
 
 **C. WWAN: redes de baja potencia y área extensa (LPWAN).**
 
@@ -1004,9 +1004,9 @@ Familia pensada para el **internet de las cosas**: dispositivos que envían **mu
 | **NB-IoT** | **Licenciado** (3GPP) | Cobertura del operador móvil | Usa la red celular; excelente penetración en sótanos y arquetas |
 | **LTE-M** | Licenciado (3GPP) | Cobertura del operador | Más caudal que NB-IoT y admite **movilidad** y voz |
 
-> **[DATO CLAVE EXAMEN]** La distinción decisiva dentro de LPWAN es **espectro sin licencia frente a espectro licenciado**. **LoRaWAN y Sigfox** operan en bandas de **uso común**, de modo que una Administración puede **desplegar su propia red** sin depender de un operador ni pagar por dispositivo, pero sin garantía de calidad ni de ausencia de interferencias. **NB-IoT y LTE-M** son tecnologías **3GPP** sobre espectro **licenciado**: hay calidad y cobertura garantizadas por contrato, pero el servicio es del operador. Es exactamente la disyuntiva que se plantea en cualquier proyecto municipal de sensórica urbana.
+> **[DATO CLAVE]** La distinción decisiva dentro de LPWAN es **espectro sin licencia frente a espectro licenciado**. **LoRaWAN y Sigfox** operan en bandas de **uso común**, de modo que una Administración puede **desplegar su propia red** sin depender de un operador ni pagar por dispositivo, pero sin garantía de calidad ni de ausencia de interferencias. **NB-IoT y LTE-M** son tecnologías **3GPP** sobre espectro **licenciado**: hay calidad y cobertura garantizadas por contrato, pero el servicio es del operador. Es exactamente la disyuntiva que se plantea en cualquier proyecto municipal de sensórica urbana.
 
-> **[EJEMPLO AYTO MADRID]** El edificio del distrito acaba concentrando **cinco** tecnologías inalámbricas distintas, cada una en su escala: **Wi-Fi 6** para los puestos móviles y las tabletas de los inspectores (**WLAN**); **Bluetooth LE** en los auriculares del personal de atención telefónica y en las balizas de accesibilidad de la entrada (**WPAN**); **NFC** en los lectores de la tarjeta de empleado del control de presencia (**WPAN**); un **radioenlace de microondas** como respaldo del enlace de fibra con el CPD (**WMAN**); y **NB-IoT** en los sensores de ocupación y de calidad del aire, precisamente porque están en el sótano y en el patio, donde el Wi-Fi no llega y donde la penetración de la red celular sí (**WWAN**). Elegir bien es elegir la escala correcta, no la tecnología más rápida.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** El edificio del distrito acaba concentrando **cinco** tecnologías inalámbricas distintas, cada una en su escala: **Wi-Fi 6** para los puestos móviles y las tabletas de los inspectores (**WLAN**); **Bluetooth LE** en los auriculares del personal de atención telefónica y en las balizas de accesibilidad de la entrada (**WPAN**); **NFC** en los lectores de la tarjeta de empleado del control de presencia (**WPAN**); un **radioenlace de microondas** como respaldo del enlace de fibra con el CPD (**WMAN**); y **NB-IoT** en los sensores de ocupación y de calidad del aire, precisamente porque están en el sótano y en el patio, donde el Wi-Fi no llega y donde la penetración de la red celular sí (**WWAN**). Elegir bien es elegir la escala correcta, no la tecnología más rápida.
 
 ---
 
@@ -1026,7 +1026,7 @@ Los conceptos asociados son de memorización obligatoria:
 - **Traspaso (*handover* o *handoff*)**: transferencia de una comunicación en curso de una celda a otra sin interrumpirla, al detectarse que la señal de la celda vecina es mejor.
 - **Itinerancia (*roaming*)**: capacidad de un abonado de usar la red de **otro operador**, típicamente en otro país, en virtud de un acuerdo. En la Unión Europea está regulada: rige el principio de **«itinerancia como en casa»** [REG2015-2120].
 
-> **[DATO CLAVE EXAMEN]** **Traspaso e itinerancia no son lo mismo.** El **traspaso** ocurre **dentro** de la red del operador y **durante** una comunicación en curso, y su función es la **continuidad**. La **itinerancia** ocurre **entre redes de operadores distintos** y su función es la **cobertura** fuera de la propia red; no exige que haya comunicación en curso. Es un par de conceptos que se intercambian como distractores con mucha frecuencia.
+> **[DATO CLAVE]** **Traspaso e itinerancia no son lo mismo.** El **traspaso** ocurre **dentro** de la red del operador y **durante** una comunicación en curso, y su función es la **continuidad**. La **itinerancia** ocurre **entre redes de operadores distintos** y su función es la **cobertura** fuera de la propia red; no exige que haya comunicación en curso. Es un par de conceptos que se intercambian como distractores con mucha frecuencia.
 
 **Arquitectura general.** Toda red celular, de cualquier generación, se organiza en tres bloques:
 
@@ -1049,7 +1049,7 @@ Los conceptos asociados son de memorización obligatoria:
 | **4G** | **LTE / LTE-Advanced** | 2010-2013 | **Solo paquetes** | **Todo IP**; la voz pasa a ser un servicio más (**VoLTE**); **OFDMA** y **MIMO**; agregación de portadoras |
 | **5G** | **5G NR** | 2019- | Solo paquetes | **IMT-2020**: eMBB, URLLC, mMTC; MIMO masivo, haces, **fraccionamiento de red** |
 
-> **[DATO CLAVE EXAMEN]** Los cuatro saltos conceptuales, que valen más que las fechas:
+> **[DATO CLAVE]** Los cuatro saltos conceptuales, que valen más que las fechas:
 > **(1) De 1G a 2G**: de **analógico a digital**. Con ello llegan el cifrado, el SMS y la **SIM**.
 > **(2) De 2G a 2.5G (GPRS)**: de **circuitos a paquetes** para los datos, con la consecuencia económica de que se factura por **volumen** y la técnica de que la conexión está **siempre disponible**.
 > **(3) De 3G a 4G (LTE)**: desaparece por completo la conmutación de **circuitos**; la red es **todo IP** y la voz se transporta como datos (**VoLTE**). Es el salto arquitectónico más profundo de la serie.
@@ -1071,7 +1071,7 @@ Sus habilitadores tecnológicos:
 - **Computación en el borde (*edge computing*, MEC)**: se acerca la capacidad de proceso a la estación base para no pagar el retardo de ir hasta el centro de datos. Sin ella, el objetivo de 1 ms es inalcanzable. Ver **Tema 31**.
 - **Modos de despliegue**: **NSA** (*Non-Standalone*), donde la radio 5G se apoya en el **núcleo 4G** —es como arrancaron casi todas las redes— y **SA** (*Standalone*), con **núcleo 5G propio**, que es el único que habilita realmente el fraccionamiento de red y la URLLC [3GPP].
 
-> **[DATO CLAVE EXAMEN]** **Sin núcleo 5G autónomo (SA) no hay ni *network slicing* ni URLLC reales.** Un despliegue **NSA** ofrece más velocidad —es decir, solo eMBB—, pero conserva la arquitectura del núcleo 4G. Es la distinción que separa el «5G comercial» del «5G que transforma servicios», y la que hay que citar cuando una pregunta plantee para qué sirve el 5G en un servicio público.
+> **[DATO CLAVE]** **Sin núcleo 5G autónomo (SA) no hay ni *network slicing* ni URLLC reales.** Un despliegue **NSA** ofrece más velocidad —es decir, solo eMBB—, pero conserva la arquitectura del núcleo 4G. Es la distinción que separa el «5G comercial» del «5G que transforma servicios», y la que hay que citar cuando una pregunta plantee para qué sirve el 5G en un servicio público.
 
 **El espectro del 5G en España.** Tres bandas prioritarias, cada una con una función distinta que se deduce de la regla de oro de §2.2.1:
 
@@ -1081,13 +1081,13 @@ Sus habilitadores tecnológicos:
 | **3,5 GHz** (banda central) | **Equilibrio** entre cobertura y capacidad. Es la banda de referencia del 5G europeo | Asignada a los operadores; el grueso del despliegue actual |
 | **26 GHz** (ondas milimétricas) | **Capacidad** en puntos calientes y usos industriales; alcance de decenas o centenares de metros | Subastada en **2022**: 12 concesiones de ámbito estatal y 38 de ámbito autonómico, por **20 años prorrogables** |
 
-> **[DATO CLAVE EXAMEN]** El **dividendo digital** es el espectro que se libera al pasar la televisión de analógica a digital, gracias a que la multiplexación digital permite meter **varios canales en un múltiplex** (§6.2.1). Hubo **dos**: el primero liberó la banda de **800 MHz** (para 4G) y el segundo, la de **700 MHz** (para 5G). Dato complementario del **RD 391/2019**: la banda **470-694 MHz** queda garantizada para la **TDT al menos hasta 2030**. Es la cifra que cierra el tema de la difusión terrestre.
+> **[DATO CLAVE]** El **dividendo digital** es el espectro que se libera al pasar la televisión de analógica a digital, gracias a que la multiplexación digital permite meter **varios canales en un múltiplex** (§6.2.1). Hubo **dos**: el primero liberó la banda de **800 MHz** (para 4G) y el segundo, la de **700 MHz** (para 5G). Dato complementario del **RD 391/2019**: la banda **470-694 MHz** queda garantizada para la **TDT al menos hasta 2030**. Es la cifra que cierra el tema de la difusión terrestre.
 
 **Hacia el 6G.** La UIT trabaja en el marco **IMT-2030**, con horizonte de despliegue en torno a **2030**. Las líneas de investigación —comunicación y detección integradas, inteligencia artificial nativa en la red, bandas de terahercios, integración con constelaciones no terrestres— aún **no son normativa** y en un examen deben citarse como prospectiva, no como hecho.
 
-> **[EJEMPLO AYTO MADRID]** El 5G aparece en un servicio municipal en las tres familias de uso, y conviene saber identificarlas. **eMBB**: una unidad móvil de atención ciudadana desplegada en la calle usa la red 5G comercial como si fuera fibra, con acceso fijo inalámbrico. **URLLC**: la regulación semafórica adaptativa y el telemando de instalaciones exigen latencia acotada y fiabilidad —y por eso solo se puede prometer sobre despliegue **SA** con fraccionamiento de red, no sobre NSA—. **mMTC**: los miles de sensores de ocupación de aparcamiento, contenedores y calidad del aire de la ciudad, que envían unos pocos bytes al día y deben durar años con una pila. Tres exigencias incompatibles entre sí que, antes del 5G, requerían tres redes distintas.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** El 5G aparece en un servicio municipal en las tres familias de uso, y conviene saber identificarlas. **eMBB**: una unidad móvil de atención ciudadana desplegada en la calle usa la red 5G comercial como si fuera fibra, con acceso fijo inalámbrico. **URLLC**: la regulación semafórica adaptativa y el telemando de instalaciones exigen latencia acotada y fiabilidad —y por eso solo se puede prometer sobre despliegue **SA** con fraccionamiento de red, no sobre NSA—. **mMTC**: los miles de sensores de ocupación de aparcamiento, contenedores y calidad del aire de la ciudad, que envían unos pocos bytes al día y deben durar años con una pila. Tres exigencias incompatibles entre sí que, antes del 5G, requerían tres redes distintas.
 
-> **[REFERENCIA CRUZADA]** El sistema **TETRA**, la red de radio troncal digital que usan los servicios de emergencia y la Policía Municipal, es el objeto íntegro del **Tema 38**. Aquí basta con situarlo: es una red **celular** de radio profesional, **semidúplex** con pulsar para hablar (§3.1), optimizada para **comunicación de grupo**, establecimiento de llamada en **menos de medio segundo**, prioridades y llamada de emergencia, y con **modo directo** entre terminales sin infraestructura. Es decir: renuncia deliberadamente al caudal para ganar en **disponibilidad y en tiempo de establecimiento**, que es lo que una emergencia necesita.
+> **[RELACIÓN CON OTROS TEMAS]** El sistema **TETRA**, la red de radio troncal digital que usan los servicios de emergencia y la Policía Municipal, es el objeto íntegro del **Tema 38**. Aquí basta con situarlo: es una red **celular** de radio profesional, **semidúplex** con pulsar para hablar (§3.1), optimizada para **comunicación de grupo**, establecimiento de llamada en **menos de medio segundo**, prioridades y llamada de emergencia, y con **modo directo** entre terminales sin infraestructura. Es decir: renuncia deliberadamente al caudal para ganar en **disponibilidad y en tiempo de establecimiento**, que es lo que una emergencia necesita.
 
 ---
 
@@ -1104,7 +1104,7 @@ Esta sección cierra el tema con las dos preguntas que un técnico municipal tie
 1. **En radio hay que suponer siempre que alguien escucha.** La única protección real es el **cifrado del enlace**, no la ocultación.
 2. **Hay que autenticar al que entra**, y hacerlo de forma que se pueda **imputar** la actividad a una persona concreta —lo que descarta las claves compartidas en entornos profesionales—.
 
-**Ataques característicos.** Enumerarlos es materia de examen:
+**Ataques característicos:**
 
 | Ataque | En qué consiste |
 |---|---|
@@ -1117,7 +1117,7 @@ Esta sección cierra el tema con las dos preguntas que un técnico municipal tie
 | **Interferencia deliberada** (*jamming*) | Saturación de la banda para denegar el servicio. Muy difícil de evitar, fácil de localizar |
 | **Suplantación de MAC** | Clonado de una dirección MAC autorizada; hace **inútil** el filtrado por MAC |
 
-**La evolución de los protocolos de seguridad.** Es la tabla más preguntada de la sección. Ver **diagrama D17**:
+**La evolución de los protocolos de seguridad.** Ver **diagrama D17**:
 
 | Protocolo | Año | Cifrado | Autenticación | Estado |
 |---|---|---|---|---|
@@ -1132,9 +1132,9 @@ Las tres aportaciones de **WPA3** que hay que saber nombrar:
 - **Modo Enterprise de 192 bits**, alineado con las suites criptográficas de alta seguridad, pensado para Administración y sectores críticos.
 - **OWE** (*Opportunistic Wireless Encryption*, comercialmente **Wi-Fi Enhanced Open**): cifra el enlace **en redes abiertas sin contraseña**. Resuelve el escándalo silencioso de la wifi de cortesía, en la que hasta ahora todo el tráfico viajaba en claro.
 
-**Medidas ineficaces que hay que saber descartar.** Es una pregunta clásica en forma de «señale la medida que **no** aporta seguridad real»:
+**Medidas ineficaces que hay que saber descartar.** Son las que **no** aportan seguridad real:
 
-> **[DATO CLAVE EXAMEN]** **Ocultar el SSID** (desactivar la baliza) **no es una medida de seguridad**: el nombre de la red sigue viajando en claro en las tramas de asociación de cualquier cliente que se conecte, y basta esperar. **Filtrar por dirección MAC** tampoco lo es: las MAC circulan en claro en todas las tramas y **se clonan trivialmente**. Ambas son **medidas cosméticas** que además complican la operación —y que dan una falsa sensación de protección, que es lo peor de todo—. Lo único que protege es el **cifrado robusto** y la **autenticación por usuario**.
+> **[DATO CLAVE]** **Ocultar el SSID** (desactivar la baliza) **no es una medida de seguridad**: el nombre de la red sigue viajando en claro en las tramas de asociación de cualquier cliente que se conecte, y basta esperar. **Filtrar por dirección MAC** tampoco lo es: las MAC circulan en claro en todas las tramas y **se clonan trivialmente**. Ambas son **medidas cosméticas** que además complican la operación —y que dan una falsa sensación de protección, que es lo peor de todo—. Lo único que protege es el **cifrado robusto** y la **autenticación por usuario**.
 
 **El modelo empresarial: 802.1X + EAP + RADIUS.** Es el que corresponde a cualquier red municipal, y funciona con tres actores [IEEE802.1]:
 
@@ -1158,15 +1158,15 @@ Sus ventajas frente a la clave precompartida son decisivas y hay que poder enunc
 
 **Lo que exige el ENS.** Aquí está el anclaje normativo, verificado contra el texto del BOE:
 
-> **[DATO CLAVE EXAMEN]** Medidas del anexo II del ENS que gobiernan las comunicaciones [ENS]:
+> **[DATO CLAVE]** Medidas del anexo II del ENS que gobiernan las comunicaciones [ENS]:
 > **`mp.com.1` — Perímetro seguro** (todas las dimensiones; aplica en las **tres categorías**): *«se dispondrá de un sistema de protección perimetral que separe la red interna del exterior. Todo el tráfico deberá atravesar dicho sistema»*, y *«todos los flujos de información a través del perímetro deben estar autorizados previamente»*.
 > **`mp.com.2` — Protección de la confidencialidad** (dimensión **C**): *«se emplearán redes privadas virtuales cifradas cuando la comunicación discurra por redes fuera del propio dominio de seguridad»*. Nivel BAJO, la medida; **MEDIO, + R1** (algoritmos y parámetros **autorizados por el CCN**); **ALTO, + R1 + R2 + R3** (dispositivos **hardware** y productos certificados).
 > **`mp.com.3` — Protección de la integridad y de la autenticidad** (dimensiones **I** y **A**): nivel BAJO, la medida; **MEDIO, + R1 + R2**; **ALTO, + R1 + R2 + R3 + R4**.
 > **`mp.com.4` — Separación de flujos de información en la red** (todas las dimensiones): **no aplica** en categoría BÁSICA; **MEDIA, + [R1 o R2 o R3]**; **ALTA, + [R2 o R3] + R4**. Sus dos requisitos base son que *«el tráfico por la red se segregará para que cada equipo solamente tenga acceso a la información que necesita»* y —dato capital para este tema— que ***«si se emplean comunicaciones inalámbricas, será en un segmento separado»***. Sus refuerzos son **R1 segmentación lógica básica por VLAN** —con un mínimo de tres subredes: **usuarios, servicios y administración**—, **R2 segmentación lógica avanzada por VPN**, **R3 segmentación física** y **R4 control en los puntos de interconexión**.
 
-> **[EJEMPLO AYTO MADRID]** Diseño inalámbrico de la Oficina de Atención a la Ciudadanía traducido a medidas del ENS. Se despliegan **tres SSID sobre los mismos puntos de acceso**, cada uno en su VLAN, lo que satisface `mp.com.4.2` y su refuerzo **R1**: (1) **corporativa**, con **WPA3-Enterprise** y **802.1X/EAP-TLS** contra el directorio municipal, de modo que cada actuación es imputable a un empleado concreto —requisito de trazabilidad del ENS—; (2) **dispositivos**, para impresoras, pantallas de turnos y sensores, sin acceso a la red de servicios y con listas de control de acceso estrictas, porque son equipos que no se pueden parchear al ritmo de un puesto de trabajo; (3) **cortesía para el público**, en VLAN totalmente aislada con **salida directa a internet**, sin ninguna ruta hacia la red municipal, con **aislamiento entre clientes**, **OWE** para cifrar aunque sea abierta, **portal cautivo** con las condiciones de uso y la información del art. 13 del RGPD, y limitación de caudal. Y sobre todo ello, el principio que no se puede olvidar: el enlace radio es **una** capa, y los servicios municipales siguen exigiendo **TLS** de extremo a extremo por encima de él.
+> **[EJEMPLO DE APLICACIÓN EN EL AYTO]** Diseño inalámbrico de la Oficina de Atención a la Ciudadanía traducido a medidas del ENS. Se despliegan **tres SSID sobre los mismos puntos de acceso**, cada uno en su VLAN, lo que satisface `mp.com.4.2` y su refuerzo **R1**: (1) **corporativa**, con **WPA3-Enterprise** y **802.1X/EAP-TLS** contra el directorio municipal, de modo que cada actuación es imputable a un empleado concreto —requisito de trazabilidad del ENS—; (2) **dispositivos**, para impresoras, pantallas de turnos y sensores, sin acceso a la red de servicios y con listas de control de acceso estrictas, porque son equipos que no se pueden parchear al ritmo de un puesto de trabajo; (3) **cortesía para el público**, en VLAN totalmente aislada con **salida directa a internet**, sin ninguna ruta hacia la red municipal, con **aislamiento entre clientes**, **OWE** para cifrar aunque sea abierta, **portal cautivo** con las condiciones de uso y la información del art. 13 del RGPD, y limitación de caudal. Y sobre todo ello, el principio que no se puede olvidar: el enlace radio es **una** capa, y los servicios municipales siguen exigiendo **TLS** de extremo a extremo por encima de él.
 
-> **[REFERENCIA CRUZADA]** La **seguridad perimetral**, los **cortafuegos**, los **IDS/IPS**, las **VPN de acceso remoto** y la seguridad del **puesto de usuario** son el objeto del **Tema 36**. Las **técnicas criptográficas** y los **protocolos seguros** —AES, TLS, IPsec— se desarrollan en el **Tema 32**. Los **principios del ENS** en su conjunto, en el **Tema 39**. Aquí se han citado únicamente las medidas `mp.com`, que son las específicas de las comunicaciones, y la seguridad propia del enlace radio, que ningún otro tema cubre.
+> **[RELACIÓN CON OTROS TEMAS]** La **seguridad perimetral**, los **cortafuegos**, los **IDS/IPS**, las **VPN de acceso remoto** y la seguridad del **puesto de usuario** son el objeto del **Tema 36**. Las **técnicas criptográficas** y los **protocolos seguros** —AES, TLS, IPsec— se desarrollan en el **Tema 32**. Los **principios del ENS** en su conjunto, en el **Tema 39**. Aquí se han citado únicamente las medidas `mp.com`, que son las específicas de las comunicaciones, y la seguridad propia del enlace radio, que ningún otro tema cubre.
 
 ### 9.2. Marco normativo y regulatorio de telecomunicaciones en el ámbito público
 
@@ -1183,25 +1183,25 @@ Sus ventajas frente a la clave precompartida son decisivas y hay que poder enunc
 | **VII** | Tasas en materia de telecomunicaciones |
 | **VIII** | Inspección y régimen sancionador |
 
-**El principio estructural: liberalización.** El punto de partida del sistema, y la pregunta más frecuente de esta parte:
+**El principio estructural: liberalización.** El punto de partida del sistema:
 
-> **[DATO CLAVE EXAMEN]** *«Las telecomunicaciones son **servicios de interés general** que se prestan en régimen de **libre competencia**»*, y *«**solo tienen la consideración de servicio público** o están sometidos a obligaciones de servicio público los servicios regulados en el artículo 4 y en el título III, respectivamente»* [LGT, art. 2]. Y el **art. 4.1** cierra el círculo: *«solo tienen la consideración de servicio público los servicios regulados en este artículo»*, que son los de **seguridad nacional, defensa nacional, seguridad pública, seguridad vial y protección civil**. Traducido: **la telefonía y el acceso a internet NO son servicio público en España** —son servicios de interés general en competencia, sujetos a **obligaciones** de servicio público—. Es una distinción que se pregunta con distractores muy tentadores.
+> **[DATO CLAVE]** *«Las telecomunicaciones son **servicios de interés general** que se prestan en régimen de **libre competencia**»*, y *«**solo tienen la consideración de servicio público** o están sometidos a obligaciones de servicio público los servicios regulados en el artículo 4 y en el título III, respectivamente»* [LGT, art. 2]. Y el **art. 4.1** cierra el círculo: *«solo tienen la consideración de servicio público los servicios regulados en este artículo»*, que son los de **seguridad nacional, defensa nacional, seguridad pública, seguridad vial y protección civil**. Traducido: **la telefonía y el acceso a internet NO son servicio público en España** —son servicios de interés general en competencia, sujetos a **obligaciones** de servicio público—.
 
 **El servicio universal (arts. 37 a 42).** Es la principal obligación de servicio público y la garantía de que la liberalización no deja a nadie fuera:
 
-> **[DATO CLAVE EXAMEN]** **Servicio universal** es *«el conjunto definido de servicios cuya prestación se garantiza para todos los consumidores con independencia de su localización geográfica, en condiciones de neutralidad tecnológica, con una calidad determinada y a un precio asequible»* [LGT, art. 37.1]. Incluye **dos** prestaciones: (a) **acceso adecuado y disponible a una internet de banda ancha** a través de una conexión subyacente **en una ubicación fija**, con **velocidad mínima de 10 Mbit/s en sentido descendente**, escalable **por real decreto a 30 Mbit/s** «tan pronto como sea posible»; y (b) **servicios de comunicaciones vocales** a través de esa misma conexión fija. El **anexo III** enumera los **once** servicios que la conexión debe soportar: correo electrónico, motores de búsqueda, formación y educación en línea, prensa o noticias, compra de bienes y servicios, búsqueda de empleo, redes profesionales, **banca por internet**, **utilización de servicios de administración electrónica**, redes sociales y mensajería, y llamadas y videollamadas de calidad estándar.
+> **[DATO CLAVE]** **Servicio universal** es *«el conjunto definido de servicios cuya prestación se garantiza para todos los consumidores con independencia de su localización geográfica, en condiciones de neutralidad tecnológica, con una calidad determinada y a un precio asequible»* [LGT, art. 37.1]. Incluye **dos** prestaciones: (a) **acceso adecuado y disponible a una internet de banda ancha** a través de una conexión subyacente **en una ubicación fija**, con **velocidad mínima de 10 Mbit/s en sentido descendente**, escalable **por real decreto a 30 Mbit/s** «tan pronto como sea posible»; y (b) **servicios de comunicaciones vocales** a través de esa misma conexión fija. El **anexo III** enumera los **once** servicios que la conexión debe soportar: correo electrónico, motores de búsqueda, formación y educación en línea, prensa o noticias, compra de bienes y servicios, búsqueda de empleo, redes profesionales, **banca por internet**, **utilización de servicios de administración electrónica**, redes sociales y mensajería, y llamadas y videollamadas de calidad estándar.
 
-Tres precisiones que se preguntan: (1) el servicio universal es de **ubicación fija**: **no** garantiza cobertura móvil; (2) la **asequibilidad** se instrumenta mediante **abonos sociales** para rentas bajas o necesidades sociales especiales, cuya evolución **supervisa la CNMC** [LGT, art. 38]; (3) por real decreto puede ampliarse a **microempresas, pymes y organizaciones sin ánimo de lucro** [LGT, art. 37.3].
+Tres precisiones: (1) el servicio universal es de **ubicación fija**: **no** garantiza cobertura móvil; (2) la **asequibilidad** se instrumenta mediante **abonos sociales** para rentas bajas o necesidades sociales especiales, cuya evolución **supervisa la CNMC** [LGT, art. 38]; (3) por real decreto puede ampliarse a **microempresas, pymes y organizaciones sin ánimo de lucro** [LGT, art. 37.3].
 
 **Las Administraciones públicas como operadoras (art. 13).** Este es el artículo que un técnico municipal debe conocer por encima de los demás, porque delimita lo que el Ayuntamiento puede y no puede hacer con una red:
 
-> **[DATO CLAVE EXAMEN]** Cuando una Administración pública —directamente o a través de entidades que controle— **instala y explota redes públicas** o **presta servicios de comunicaciones electrónicas disponibles al público**, debe hacerlo *«dando cumplimiento al **principio de inversor privado**, con la debida **separación de cuentas**, con arreglo a los principios de **neutralidad, transparencia, no distorsión de la competencia y no discriminación**»*, y respetando la normativa de **ayudas de Estado** de los arts. 107 y 108 del Tratado de Funcionamiento de la UE [LGT, art. 13.2]. La **excepción** expresa: en la difusión del servicio de **televisión digital en zonas sin cobertura de TDT** *«se considera que se produce una situación de fallo de mercado»*, y por ello esas iniciativas **no se sujetan al principio de inversor privado** ni deben comunicarse al Registro de operadores, salvo que la red se ponga a disposición de terceros o se presten por ella otros servicios.
+> **[DATO CLAVE]** Cuando una Administración pública —directamente o a través de entidades que controle— **instala y explota redes públicas** o **presta servicios de comunicaciones electrónicas disponibles al público**, debe hacerlo *«dando cumplimiento al **principio de inversor privado**, con la debida **separación de cuentas**, con arreglo a los principios de **neutralidad, transparencia, no distorsión de la competencia y no discriminación**»*, y respetando la normativa de **ayudas de Estado** de los arts. 107 y 108 del Tratado de Funcionamiento de la UE [LGT, art. 13.2]. La **excepción** expresa: en la difusión del servicio de **televisión digital en zonas sin cobertura de TDT** *«se considera que se produce una situación de fallo de mercado»*, y por ello esas iniciativas **no se sujetan al principio de inversor privado** ni deben comunicarse al Registro de operadores, salvo que la red se ponga a disposición de terceros o se presten por ella otros servicios.
 
 La clave interpretativa: el artículo regula la actuación de la Administración **como operadora frente al público**. La **red interna** del Ayuntamiento —la que une sus sedes y da servicio a sus empleados— es una **red privada de usuario final** y no queda sujeta a ese régimen. La frontera se cruza cuando esa red **se ofrece a terceros**, aunque sea gratuitamente: ahí es donde una wifi municipal abierta a la ciudadanía puede llegar a plantear la cuestión, y por eso conviene delimitarla como servicio de cortesía accesorio y no como servicio de acceso a internet en competencia.
 
 **El dominio público radioeléctrico (título V).** Su régimen se resume en cuatro datos:
 
-> **[DATO CLAVE EXAMEN]** (1) *«El espectro radioeléctrico es un **bien de dominio público**, cuya **titularidad y administración corresponden al Estado**»* [LGT, art. 85.1], que la ejerce conforme a los tratados internacionales y a las resoluciones de la **UIT**. (2) Los **títulos habilitantes** para su uso son de tres clases: **autorización general** (uso común, sin necesidad de solicitud individual: es el caso del **Wi-Fi** en bandas ISM), **autorización individual** y **concesión administrativa** (uso privativo con reserva de frecuencia, que es el de los operadores móviles). (3) Las **concesiones** de espectro armonizado para comunicaciones electrónicas tienen una duración **mínima de 20 años**, prorrogable hasta un máximo del orden de **40**. (4) El uso del dominio público radioeléctrico está sujeto a **tasa** por reserva [LGT, título VII]. La consecuencia práctica para una Administración: **desplegar Wi-Fi o LoRaWAN no requiere título individual** —bandas de uso común—, mientras que **un radioenlace en banda licenciada sí exige autorización** y devenga tasa.
+> **[DATO CLAVE]** (1) *«El espectro radioeléctrico es un **bien de dominio público**, cuya **titularidad y administración corresponden al Estado**»* [LGT, art. 85.1], que la ejerce conforme a los tratados internacionales y a las resoluciones de la **UIT**. (2) Los **títulos habilitantes** para su uso son de tres clases: **autorización general** (uso común, sin necesidad de solicitud individual: es el caso del **Wi-Fi** en bandas ISM), **autorización individual** y **concesión administrativa** (uso privativo con reserva de frecuencia, que es el de los operadores móviles). (3) Las **concesiones** de espectro armonizado para comunicaciones electrónicas tienen una duración **mínima de 20 años**, prorrogable hasta un máximo del orden de **40**. (4) El uso del dominio público radioeléctrico está sujeto a **tasa** por reserva [LGT, título VII]. La consecuencia práctica para una Administración: **desplegar Wi-Fi o LoRaWAN no requiere título individual** —bandas de uso común—, mientras que **un radioenlace en banda licenciada sí exige autorización** y devenga tasa.
 
 **Otras obligaciones del título III que afectan a cualquier red.** Aunque su desarrollo corresponde a otros temas, hay que saber que existen y qué artículo las contiene:
 
@@ -1216,7 +1216,7 @@ La clave interpretativa: el artículo regula la actuación de la Administración
 | **Derechos de los usuarios** | 64-78 | Transparencia contractual, cambio de operador y conservación del número, acceso a **emergencias (112)**, itinerancia |
 | **Infraestructuras comunes en edificios (ICT)** | **55** | Remisión al reglamento de **ICT** [RD346-2011]; inventario centralizado de edificios con ICT instalada |
 
-> **[DATO CLAVE EXAMEN]** El **art. 63** es el «ENS de los operadores», y su comparación con el ENS es una buena pregunta de contraste: el **ENS** obliga a las **entidades del sector público** respecto de **sus** sistemas; el **art. 63 de la LGT** obliga a los **operadores** respecto de las **redes públicas**. El Ayuntamiento está sujeto al primero por sus sistemas, y **se beneficia** del segundo como cliente de los operadores que le prestan servicio. La cifra memorizable son los **cinco parámetros** de valoración del impacto de un incidente notificable.
+> **[DATO CLAVE]** El **art. 63** es el «ENS de los operadores», y conviene compararlo con el ENS: el **ENS** obliga a las **entidades del sector público** respecto de **sus** sistemas; el **art. 63 de la LGT** obliga a los **operadores** respecto de las **redes públicas**. El Ayuntamiento está sujeto al primero por sus sistemas, y **se beneficia** del segundo como cliente de los operadores que le prestan servicio. La cifra memorizable son los **cinco parámetros** de valoración del impacto de un incidente notificable.
 
 **Los reguladores y organismos.** Cuadro final del tema:
 

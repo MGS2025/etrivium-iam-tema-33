@@ -35,10 +35,10 @@ def inline(t):
 
 
 CALLOUTS = {
-    "DATO CLAVE EXAMEN": "dato",
+    "DATO CLAVE": "dato",
     "EJERCICIO RESUELTO": "ejercicio",
-    "EJEMPLO AYTO MADRID": "ayto",
-    "REFERENCIA CRUZADA": "ref",
+    "EJEMPLO DE APLICACIÓN EN EL AYTO": "ayto",
+    "RELACIÓN CON OTROS TEMAS": "ref",
 }
 
 
@@ -296,7 +296,7 @@ def build():
 <tr><td>Casos prácticos Ayto Madrid</td><td>3 casos (medios, modos y calidad del enlace de una oficina de distrito; equipos, topología y una tormenta de difusión; despliegue inalámbrico, seguridad y marco normativo)</td></tr>
 <tr><td>Fuentes Tier 1</td><td>25 referencias canónicas (Ley 11/2022, ENS, UIT, IEEE, ISO/IEC, IETF, 3GPP, ETSI)</td></tr>
 </tbody></table>
-<div class="callout ref"><span class="kicker">Cómo estudiar</span>Este es <strong>el tema-cimiento del bloque de comunicaciones</strong>: es el primero por orden lógico de los ocho que el temario dedica a las redes, aunque no lo sea por número. El orden que funciona es: primero <strong>§1, §2 y §3</strong>, porque fijan el vocabulario y la física que usan todas las demás; después <strong>§4, §5 y §6</strong>, que son el núcleo más preguntable —equipos, topologías y conmutación—; y por último <strong>§7, §8 y §9</strong>. Memoriza los <strong>Diagramas</strong> D5 (bandas del espectro y la regla de la frecuencia), D9 y D10 (equipos por capa y dominios de colisión y difusión), D13 (las tres conmutaciones) y D14 (direcciones de difusión). Las cajas naranjas (DATO CLAVE) marcan lo memorizable: frecuencias, distancias, normas IEEE, direcciones y artículos. Termina siempre por el bloque final del Contenido, <strong>«los ocho datos que no se pueden fallar»</strong>.</div>"""
+<div class="callout ref"><span class="kicker">Cómo estudiar</span>Este es <strong>el tema-cimiento del bloque de comunicaciones</strong>: es el primero por orden lógico de los ocho que el temario dedica a las redes, aunque no lo sea por número. El orden que funciona es: primero <strong>§1, §2 y §3</strong>, porque fijan el vocabulario y la física que usan todas las demás; después <strong>§4, §5 y §6</strong>, que son el núcleo del tema —equipos, topologías y conmutación—; y por último <strong>§7, §8 y §9</strong>. Memoriza los <strong>Diagramas</strong> D5 (bandas del espectro y la regla de la frecuencia), D9 y D10 (equipos por capa y dominios de colisión y difusión), D13 (las tres conmutaciones) y D14 (direcciones de difusión). Las cajas naranjas (DATO CLAVE) marcan lo memorizable: frecuencias, distancias, normas IEEE, direcciones y artículos. Termina siempre por el bloque final del Contenido, <strong>«los ocho datos que no se pueden fallar»</strong>.</div>"""
 
     nav = (
         '<nav class="tabs">'

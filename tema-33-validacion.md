@@ -22,13 +22,13 @@ El enunciado oficial (BOAM 10.032, tema 33) enumera **siete materias**. Correspo
 | Comunicaciones móviles e inalámbricas | §7 y §8 | ✅ Completo |
 | *(no está en el enunciado oficial; lo añade el esqueleto de partida)* Seguridad y normativa en la Administración Pública | §9 | ✅ Completo |
 
-El **esqueleto de partida** (`Test_Prompting/temas agosto/33.md`) se ha seguido **literalmente**. Ver la observación 1 sobre el mapeo de niveles.
+El **esqueleto de partida** se ha seguido **literalmente**. Ver la observación 1 sobre el mapeo de niveles.
 
 ## 2. Contenido teórico
 
 - **9 secciones · 20 subsecciones · 6 epígrafes de tercer nivel** (numeración de tres niveles, `N.M.K`, coherente con el resto de la serie técnica).
 - **~24.500 palabras** medidas con `wc -w`. Es el **segundo tema más extenso de toda la serie**, solo por detrás de T32 (≈25.000) y por delante de T29 (≈21.200) y T30 (≈21.400). La causa es estructural y no de estilo: el enunciado oficial reúne **siete materias** y el tema funciona como cimiento de todo el bloque de redes (T34-T38).
-- **4 tipos de callout** y **71 cajas** en total: `[DATO CLAVE EXAMEN]`, `[EJERCICIO RESUELTO]`, `[EJEMPLO AYTO MADRID]` y `[REFERENCIA CRUZADA]`.
+- **4 tipos de callout** y **71 cajas** en total: `[DATO CLAVE]`, `[EJERCICIO RESUELTO]`, `[EJEMPLO DE APLICACIÓN EN EL AYTO]` y `[RELACIÓN CON OTROS TEMAS]`.
 - **Caso de referencia transversal**: la red que conecta una Oficina de Atención a la Ciudadanía de distrito con el CPD del IAM, que atraviesa las nueve secciones y enlaza con los tres casos prácticos.
 - Cierre con un bloque de **«los ocho datos que no se pueden fallar»**, no numerado, a modo de resumen memorístico.
 - **Sin fragmentos de código**, por la misma decisión adoptada en T26, T28, T29, T30 y T32: el enunciado no menciona ningún lenguaje y lo memorizable son frecuencias, distancias, normas IEEE, direcciones y artículos. Se ha concentrado en tablas y en los diagramas D3, D5, D9, D10, D14, D15 y D17.
@@ -78,7 +78,7 @@ Se han citado y verificado contra el enunciado oficial de BOAM 10.032: **T11** (
 
 ### Observación 1 — Mapeo del esqueleto: 3 bloques a 9 secciones numeradas
 
-El `Test_Prompting/temas agosto/33.md` trae **tres bloques de primer nivel** (`##`), nueve subapartados (`###`), veinte epígrafes (`####`) y seis subepígrafes (`#####`). Se ha mapeado así:
+El esqueleto de partida trae **tres bloques de primer nivel** (`##`), nueve subapartados (`###`), veinte epígrafes (`####`) y seis subepígrafes (`#####`). Se ha mapeado así:
 
 | Nivel del esqueleto | Nivel del contenido |
 |---|---|
@@ -107,7 +107,7 @@ El T37 («Redes locales. Tipología. Técnicas de transmisión. Métodos de acce
 
 ### Observación 4 — La sección 9 no está en el enunciado oficial
 
-El bloque «Seguridad y normativa en la Administración Pública» del esqueleto **no figura en el enunciado oficial de BOAM 10.032**, que termina en «comunicaciones móviles e inalámbricas». Se ha desarrollado igualmente por tres razones: (a) está en el esqueleto de partida; (b) el marco de la Ley 11/2022 es materia razonablemente preguntable en un tema titulado «Comunicaciones»; y (c) es la parte del tema con más valor diferencial para el puesto, porque delimita **lo que el Ayuntamiento puede y no puede hacer** con una red. **A validar si debe mantenerse con este peso (≈ 15 % del tema), reducirse o suprimirse.**
+El bloque «Seguridad y normativa en la Administración Pública» del esqueleto **no figura en el enunciado oficial de BOAM 10.032**, que termina en «comunicaciones móviles e inalámbricas». Se ha desarrollado igualmente por tres razones: (a) está en el esqueleto de partida; (b) el marco de la Ley 11/2022 encaja razonablemente en un tema titulado «Comunicaciones»; y (c) es la parte del tema con más valor diferencial para el puesto, porque delimita **lo que el Ayuntamiento puede y no puede hacer** con una red. **A validar si debe mantenerse con este peso (≈ 15 % del tema), reducirse o suprimirse.**
 
 ### Observación 5 — Datos sensibles a la obsolescencia
 
@@ -121,4 +121,4 @@ Este es, junto al **T24** y al **T31**, uno de los temas más expuestos a quedar
 
 ### Observación 6 — Extensión
 
-El tema ha quedado en **≈ 24.500 palabras**, el segundo más extenso de la serie. La causa es el enunciado, no el estilo: son **siete materias** y el tema es el cimiento de otros cinco. Aun así, si María considera que resulta excesivo para un opositor, los dos candidatos naturales a recorte son **§9.2** (marco normativo, si se decide en la observación 4) y el detalle de las **generaciones móviles anteriores a 4G** en §8.2, que hoy tienen valor histórico más que operativo. **No se recomienda recortar** §4.2 ni §6, que son el núcleo preguntable.
+El tema ha quedado en **≈ 24.500 palabras**, el segundo más extenso de la serie. La causa es el enunciado, no el estilo: son **siete materias** y el tema es el cimiento de otros cinco. Aun así, si María considera que resulta excesivo para un opositor, los dos candidatos naturales a recorte son **§9.2** (marco normativo, si se decide en la observación 4) y el detalle de las **generaciones móviles anteriores a 4G** en §8.2, que hoy tienen valor histórico más que operativo. **No se recomienda recortar** §4.2 ni §6, que son el núcleo del tema.

@@ -198,7 +198,7 @@ C) 100 metros de cable horizontal más 10 metros adicionales por cada latiguillo
 
 <details><summary>Respuesta</summary>
 
-**Correcta: A) 100 metros: 90 de cable horizontal fijo más 10 de latiguillos en ambos extremos** Es el dato numérico más preguntado del cableado. Superarlo no produce un fallo limpio, sino **errores intermitentes**. Los 185 metros de la opción B corresponden al segmento de **10BASE2**, ya en desuso.
+**Correcta: A) 100 metros: 90 de cable horizontal fijo más 10 de latiguillos en ambos extremos** Es el dato numérico clave del cableado. Superarlo no produce un fallo limpio, sino **errores intermitentes**. Los 185 metros de la opción B corresponden al segmento de **10BASE2**, ya en desuso.
 
 *Referencia: §2.1.1 [ISO11801]*
 </details>

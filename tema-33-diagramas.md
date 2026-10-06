@@ -39,7 +39,7 @@
 ## D1 · El modelo de comunicación de Shannon: los cinco elementos
 
 **Sección**: §1.1.1 — Elementos del sistema de transmisión y perturbaciones en el canal
-**Propósito**: Fijar los cinco elementos en su orden correcto y, sobre todo, dejar claro que el ruido ataca **al canal**, que es el detalle de dibujo que se pregunta.
+**Propósito**: Fijar los cinco elementos en su orden correcto y, sobre todo, dejar claro que el ruido ataca **al canal**, que es el detalle de dibujo clave.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 300" role="img" aria-label="Modelo de comunicación de Shannon con sus cinco elementos en cadena: fuente de información, transmisor, canal, receptor y destino, con la fuente de ruido actuando sobre el canal y no sobre el mensaje">
@@ -142,7 +142,7 @@
 ## D4 · Los tres medios de transmisión guiados comparados
 
 **Sección**: §2.1.1 — Par trenzado, cable coaxial y fibra óptica
-**Propósito**: Poner en la misma escala los tres medios guiados y anclar los datos numéricos que se preguntan: los 100 metros del cobre, los diámetros de núcleo y las ventanas de la fibra.
+**Propósito**: Poner en la misma escala los tres medios guiados y anclar los datos numéricos clave: los 100 metros del cobre, los diámetros de núcleo y las ventanas de la fibra.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 356" role="img" aria-label="Comparación de los tres medios de transmisión guiados: par trenzado con sus categorías y el límite de cien metros, cable coaxial de cincuenta y setenta y cinco ohmios, y fibra óptica monomodo y multimodo con sus diámetros de núcleo y sus ventanas de trabajo">
@@ -234,7 +234,7 @@
 ## D6 · Parámetros de calidad de un enlace y qué degrada cada uno
 
 **Sección**: §2.3 — Parámetros de caracterización y calidad en medios de transmisión
-**Propósito**: Fijar la unidad de cada parámetro —que es lo que se pregunta— y separar latencia de fluctuación, que es la confusión más frecuente al interpretar un acuerdo de nivel de servicio.
+**Propósito**: Fijar la unidad de cada parámetro y separar latencia de fluctuación, que es la confusión más frecuente al interpretar un acuerdo de nivel de servicio.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="Parámetros de calidad de un enlace con su unidad de medida: ancho de banda en hercios, caudal en bits por segundo, atenuación y relación señal ruido en decibelios, latencia y fluctuación en milisegundos, tasa de error de bit y pérdida de paquetes, con la advertencia de que el decibelio es logarítmico">
@@ -360,7 +360,7 @@
 ## D9 · Equipos de interconexión clasificados por capa
 
 **Sección**: §4.2.1 — Repetidores, concentradores, puentes, conmutadores y encaminadores
-**Propósito**: Ordenar todos los equipos del enunciado por la capa en la que operan y por la dirección que usan para decidir, que es el criterio con el que se formulan las preguntas.
+**Propósito**: Ordenar todos los equipos del enunciado por la capa en la que operan y por la dirección que usan para decidir.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 344" role="img" aria-label="Equipos de interconexión ordenados por capa: en capa uno repetidor concentrador y transceptor que trabajan con señales, en capa dos puente conmutador y punto de acceso que usan direcciones MAC, en capa tres encaminador y conmutador de capa tres que usan direcciones IP, y en capas superiores la pasarela que traduce entre arquitecturas distintas">
@@ -398,7 +398,7 @@
 ## D10 · Dominios de colisión y dominios de difusión
 
 **Sección**: §4.2.1 — Repetidores, concentradores, puentes, conmutadores y encaminadores
-**Propósito**: Resolver de un vistazo la pregunta más repetida del temario de redes: qué equipo segmenta qué dominio.
+**Propósito**: Resolver de un vistazo la distinción central del temario de redes: qué equipo segmenta qué dominio.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-label="Comparación de concentrador, conmutador y encaminador según los dominios de colisión y de difusión que crean: el concentrador deja un único dominio de colisión y uno de difusión, el conmutador crea un dominio de colisión por puerto pero mantiene uno solo de difusión, y el encaminador crea un dominio de difusión por interfaz">
@@ -468,7 +468,7 @@
 ## D12 · Topologías físicas de red y su tolerancia a fallos
 
 **Sección**: §5.2 — Topologías de red físicas y lógicas
-**Propósito**: Dibujar las cinco topologías básicas con su punto único de fallo, y separar el plano físico del lógico, que es la distinción que se pregunta.
+**Propósito**: Dibujar las cinco topologías básicas con su punto único de fallo, y separar el plano físico del lógico, que es la distinción clave.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 352" role="img" aria-label="Las cinco topologías físicas de red: bus, anillo, estrella, árbol y malla, dibujadas con sus nodos y enlaces, indicando en cada una el punto único de fallo, y la distinción entre topología física y topología lógica con el ejemplo de Ethernet conmutado y de Token Ring">
@@ -519,7 +519,7 @@
 ## D13 · Conmutación de circuitos, de mensajes y de paquetes
 
 **Sección**: §6.1.1 — Conmutación de circuitos, de mensajes y de paquetes
-**Propósito**: Comparar las tres técnicas en los ocho rasgos que se preguntan y visualizar el encauzamiento, que es la razón numérica de que la conmutación de paquetes gane.
+**Propósito**: Comparar las tres técnicas en ocho rasgos clave y visualizar el encauzamiento, que es la razón numérica de que la conmutación de paquetes gane.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 360" role="img" aria-label="Comparación de las tres técnicas de conmutación: de circuitos con camino reservado y tres fases, de mensajes con almacenamiento y reenvío del mensaje completo, y de paquetes con multiplexación estadística y encauzamiento, más la distinción entre datagrama y circuito virtual">
@@ -604,7 +604,7 @@
 ## D15 · Redes inalámbricas: escala, arquitectura Wi-Fi y generaciones
 
 **Sección**: §7 — Redes e infraestructuras inalámbricas
-**Propósito**: Situar cada tecnología inalámbrica en su escala de cobertura y fijar la tabla de generaciones de Wi-Fi con las dos fechas que se preguntan: 2025 para Wi-Fi 7 y 2028 para Wi-Fi 8.
+**Propósito**: Situar cada tecnología inalámbrica en su escala de cobertura y fijar la tabla de generaciones de Wi-Fi con las dos fechas clave: 2025 para Wi-Fi 7 y 2028 para Wi-Fi 8.
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 356" role="img" aria-label="Redes inalámbricas ordenadas por cobertura, de la red de área personal con Bluetooth NFC y Zigbee a la red de área extensa con redes celulares satélite y LPWAN, con la arquitectura Wi-Fi de celda BSS y conjunto extendido ESS, y la tabla de generaciones de Wi-Fi 4 a Wi-Fi 8 con sus años">
